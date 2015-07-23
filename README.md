@@ -1,11 +1,11 @@
 # chunked
 [![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 
-R is a great tool, but does not score well on line by line processing speed of text files with data.
-`chunked` is an utility R library helping in processing in larger than memory text files with _dplyr_.
+R is a great tool, but does not score well on line processing speed of text files with data.
+`chunked` is a library helping you to process text files with _dplyr_ that are larger than memory.
 It builds on the execellent R library [_LaF_](https://github.com/djvanderlaan/LaF).
 
-Processing commands are writing in dplyr syntax, and `chunked` (and `LaF`) will take care that chunk by chunk is
+Processing commands are writing in dplyr syntax, and `chunked` (using `LaF`) will take care that chunk by chunk is
 processed, taking far less memory than otherwise. `chunked` is useful for __select__-ing columns, __mutate__-ing columns
 and __filter__-ing rows. It is less helpful in __group__-ing and __summarize__-ation of large text files. It can be used as
 a pre-processing step.
@@ -61,7 +61,9 @@ data_chunks <-
 # won't start processing until
 collect(data_chunks)
 # or
-write_csv_chunks(data_chunks)
+write_csv_chunks(data_chunks, "test.csv")
+# or
+insert_chunks_into(data_chunks, db, "test")
 ```
 Syntax completion in RStudio with 'chunked' just works.
 
