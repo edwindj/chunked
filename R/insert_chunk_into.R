@@ -34,9 +34,9 @@ insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALS
 
 # testing...
 
-write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)
-db <- src_sqlite("ext-data/women.db", create=TRUE)
-
-read_csv_chunks("ext-data/diamonds.csv") %>%
-  insert_chunks_into(db, "diamonds")
+# write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)
+# db <- src_sqlite("ext-data/women.db", create=TRUE)
+#
+# read_csv_chunks("ext-data/diamonds.csv") %>%
+#   insert_chunks_into(db, "diamonds")
 
