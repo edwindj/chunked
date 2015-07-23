@@ -58,5 +58,5 @@ Not implemented:
 - `arrange`
 
 _Note that using `do` it is possible to do grouping and summarization with `chunked`_, but you have 
-to be explicit in how to aggregate the results from the chunks. Another option is to 
+to be explicit in how to aggregate the results from the chunks. 
 
