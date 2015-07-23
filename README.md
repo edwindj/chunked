@@ -32,7 +32,23 @@ write the result back to a text file.
   write_csv_chunks("./large_file_out.csv")
 ```
 
-`chunked` will write process the above statement in chunks of 5000 records. 
+`chunked` will write process the above statement in chunks of 5000 records.
+
+Another option is to use `chunked` as a preprocessing step before adding it to a database
+```r
+db <- src_sqlite('test.db', create=TRUE)
+
+tbl <- 
+  read_csv_chunks("./large_file_in.csv", chunk_size=5000) %>% 
+  select(col1, col2, col5) %>%
+  filter(col1 > 10) %>% 
+  mutate(col6 = col1 + col2) %>% 
+  insert_chunks_into(db, 'my_large_table')
+  
+# tbl now points to the table in sqlite.
+```
+
+
 
 ## Lazy processing
 
@@ -47,6 +63,7 @@ collect(data_chunks)
 # or
 write_csv_chunks(data_chunks)
 ```
+Syntax completion in RStudio with 'chunked' just works.
 
 # Excluded verbs
 
