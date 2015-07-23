@@ -6,7 +6,8 @@ It builds on the execellent R library [_LaF_](https://github.com/djvanderlaan/La
 
 Processing commands are writing in dplyr syntax, and `chunked` (and `LaF`) will take care that chunk by chunk is
 processed, taking far less memory than otherwise. `chunked` is useful for __select__-ing columns, __mutate__-ing columns
-and __filter__-ing rows. It is less helpful in __group__-ing and __summarize__-ation of large text files.
+and __filter__-ing rows. It is less helpful in __group__-ing and __summarize__-ation of large text files. It can be used as
+a pre-processing step.
 
 ## Install
 
