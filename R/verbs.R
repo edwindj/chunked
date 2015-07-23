@@ -40,6 +40,11 @@ tbl_vars.tbl_chunk <- function(tbl){
 }
 
 #' @export
+groups.tbl_chunk <- function(x){
+  NULL
+}
+
+#' @export
 collect.tbl_chunk <- function(x, first_chunk_only=FALSE, ...){
   cmds <- x$cmds
   res <- x$first_chunk(cmds)

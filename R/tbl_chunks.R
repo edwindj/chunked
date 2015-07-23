@@ -1,5 +1,5 @@
 
-LaF_source <- function(x, nrows=5000){
+tbl_chunk <- function(x, nrows=5000){
 
   columns <- 1:LaF::ncol(x)
   .completed <- FALSE
@@ -68,28 +68,17 @@ record <- function(.data, cmd){
 
 ### testing
 
-# dm <- LaF::read_dm("ext-data/diamonds.yaml")
-# dat <- LaF::laf_open(dm)
-# laf_src <- LaF_source(dat, nrows=2)
-#
-# tbl_vars(laf_src)
-#
-# laf_src %>%
-#   filter(carat < 0.5) %>%
-#   collect()
-
-# #
-
 # write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)
-# dm <- LaF::detect_dm_csv("ext-data/women.csv", header=T)
-# laf <- LaF::laf_open(dm)
 #
-# women_chunked <- LaF_source(laf, nrows=2)
+# women_chunked <- read_csv_chunks("ext-data/women.csv")
 #
 # w <-
 #   women_chunked %>%
 #   mutate(height_m = height * 2.54/100) %>%
-#   filter(height_m > 1.70)
+#   filter(height_m > 1.50) %>%
+#   select(height_m)
 #
 # w %>% collect()
 # w
+#
+# w %>% write_csv_chunks(file="ext-data/test.csv")
