@@ -6,8 +6,9 @@ R is a great tool, but does not score well on line by line processing speed of t
 It builds on the execellent R library [_LaF_](https://github.com/djvanderlaan/LaF).
 
 Processing commands are writing in dplyr syntax, and `chunked` (and `LaF`) will take care that chunk by chunk is
-processed, taking far less memory, than otherwise. `chunked` is useful for selecting columns, adding columns
-and filtering rows. It is less helpful in grouping and summarization of large text files.
+processed, taking far less memory than otherwise. `chunked` is useful for __select__-ing columns, __mutate__-ing columns
+and __filter__-ing rows. It is less helpful in __group__-ing and __summarize__-ation of large text files. It can be used as
+a pre-processing step.
 
 ## Install
 
@@ -58,5 +59,5 @@ Not implemented:
 - `arrange`
 
 _Note that using `do` it is possible to do grouping and summarization with `chunked`_, but you have 
-to be explicit in how to aggregate the results from the chunks. Another option is to 
+to be explicit in how to aggregate the results from the chunks. 
 
