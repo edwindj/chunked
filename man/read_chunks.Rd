@@ -19,6 +19,14 @@ read_table_chunks(file, chunk_size = 5000L, header = TRUE, sep = "\\t",
 \item{file}{path of texst file}
 
 \item{chunk_size}{size of the chunks te be read}
+
+\item{header}{Does the csv file have a header with column names?}
+
+\item{sep}{field separator to be used}
+
+\item{dec}{decimal separator to be used}
+
+\item{...}{not used}
 }
 \description{
 read_csv_chunk will open a connection to a text file. Subsequent dplyr verbs and commands

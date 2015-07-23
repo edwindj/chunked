@@ -10,4 +10,4 @@ Description: Process text data chunkwise. 'dplyr' commands are recorded and exec
 License: GPL-2
 LazyData: TRUE
 Depends: dplyr
-Imports: LaF
+Imports: LaF, utils, lazyeval

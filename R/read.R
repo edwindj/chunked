@@ -9,7 +9,10 @@
 #' @export
 #' @param file path of texst file
 #' @param chunk_size size of the chunks te be read
-#'
+#' @param header Does the csv file have a header with column names?
+#' @param sep field separator to be used
+#' @param dec decimal separator to be used
+#' @param ... not used
 read_csv_chunks <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec=".", ...){
   #TODO add colClasses...
   dm <- LaF::detect_dm_csv(file, header=header, sep=",", dec=".")
@@ -20,12 +23,12 @@ read_csv_chunks <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec=".
 #' @rdname read_chunks
 #' @export
 read_csv2_chunks <- function(file, chunk_size=5000L, header=TRUE, sep=";", dec=",", ...){
-  read_chunks_csv(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
+  read_csv_chunks(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
 }
 
 #' @rdname read_chunks
 #' @export
 read_table_chunks <- function(file, chunk_size=5000L, header=TRUE, sep="\t", dec=".", ...){
-  read_chunks_csv(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
+  read_csv_chunks(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
 }
 

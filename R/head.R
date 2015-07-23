@@ -1,4 +1,5 @@
 #' @export
+#' @importFrom utils head
 head.tbl_chunk <- function(x, n=6L, ...){
   if (is.null(n)){
     n <- 6L

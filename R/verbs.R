@@ -1,4 +1,5 @@
 #' @export
+#' @import dplyr
 select_.tbl_chunk <- function(.data, ..., .dots){
   .dots <- lazyeval::all_dots(.dots, ...)
   cmd <- lazyeval::lazy(select_(.data, .dots=.dots))
@@ -35,8 +36,8 @@ do_.tbl_chunk <- function(.data, ..., .dots){
 }
 
 #' @export
-tbl_vars.tbl_chunk <- function(tbl){
-  names(tbl$first_chunk(tbl$cmds))
+tbl_vars.tbl_chunk <- function(x){
+  names(tbl$first_chunk(x$cmds))
 }
 
 #' @export

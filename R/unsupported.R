@@ -12,6 +12,7 @@ group_by.tbl_chunk <- function(.data, ..., .dots, add=FALSE){
 }
 
 #' @export
+#' @importFrom utils tail
 tail.tbl_chunk <- function(x, n = 6L, ...){
   stop("tail is not supported by chunked sources", call.=FALSE)
 }

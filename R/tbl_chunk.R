@@ -7,7 +7,7 @@ tbl_chunk <- function(x, nrows=5000){
 
   reset <- function(){
     LaF::begin(x)
-    completed <<- FALSE
+    .completed <<- FALSE
   }
 
   first_chunk <- function(cmds=NULL){

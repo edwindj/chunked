@@ -1,23 +1,31 @@
 #' insert chunks into a database
+#'
+#' insert chunks into a database
 #' @export
+#' @param x tbl_chunk object
+#' @param dest database destination, e.g. src_sqlite()
+#' @param table name of table
+#' @param temporary Should the table be removed when the database connection is closed?
+#' @param analyze Should the table be analyzed after import?
+#' @return a \code{\link{tbl}} object pointing to the table in database \code{dest}.
 insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALSE){
   cmds <- x$cmds
   df <- x$first_chunk(cmds)
 
   class(df) <- "data.frame"
-  if (isTRUE(dplyr::db_has_table(dest$con, table))) {
-    stop("Table ", table, " already exists.", call. = FALSE)
-  }
-  types <-dplyr::db_data_type(dest$con, df)
-  names(types) <- names(df)
   con <- dest$con
+  names(types) <- names(df)
+
   dplyr::db_begin(con)
   on.exit(dplyr::db_rollback(con))
-  dplyr::db_create_table(con, table, types, temporary = temporary)
-  dplyr::db_insert_into(con, table, df)
+  if (isTRUE(dplyr::db_has_table(dest$con, table))) {
+    warning("Table ", table, " already exists.", call. = FALSE)
+  } else {
+    types <-dplyr::db_data_type(con, df)
+    dplyr::db_create_table(con, table, types, temporary = temporary)
+  }
 
-  if (analyze)
-    dplyr::db_analyze(con, table)
+  dplyr::db_insert_into(con, table, df)
 
   while(!x$is_complete()){
     df <- x$next_chunk(cmds)
@@ -25,7 +33,8 @@ insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALS
       dplyr::db_insert_into(con, table, df)
     }
   }
-
+  if (analyze)
+    dplyr::db_analyze(con, table)
   dplyr::db_commit(con)
   on.exit(NULL)
   dplyr::tbl(dest, table)
