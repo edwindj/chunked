@@ -1,0 +1,12 @@
+Package: chunked
+Type: Package
+Title: Chunkwise Text-file Processing for `dplyr`
+Version: 0.1
+Date: 2015-07-19
+Author: Edwin de Jonge
+Maintainer: Edwin de Jonge <edwindjonge@gmail.com>
+Description: Process data chunkwise.
+License: GPL-2
+LazyData: TRUE
+Depends: dplyr
+Imports: LaF
