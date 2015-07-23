@@ -1,4 +1,5 @@
 # chunked
+[![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 
 R is a great tool, but does not score well on line by line processing speed of text files with data.
 `chunked` is an utility R library helping in processing in larger than memory text files with _dplyr_.
