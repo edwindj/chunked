@@ -73,6 +73,7 @@ Syntax completion in RStudio with 'chunked' just works.
 
 - `filter`
 - `select`
+- `rename`
 - `mutate`
 - `mutate_each`
 - `transmute`
