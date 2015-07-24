@@ -32,7 +32,7 @@ write the result back to a text file.
   write_csv_chunks("./large_file_out.csv")
 ```
 
-`chunked` will write process the above statement in chunks of 5000 records.
+`chunked` will write process the above statement in chunks of 5000 records. This is different from for example `read.csv` which reads all data into memory before processing it.
 
 Another option is to use `chunked` as a preprocessing step before adding it to a database
 ```r
