@@ -5,14 +5,19 @@
 #' the recorded commands will be executed chunk by chunk.
 #'
 #' read_csv_chunkwise can be best combined with write_csv_chunkwise (see example)
-#' @rdname read_chunks
-#' @export
 #' @param file path of texst file
 #' @param chunk_size size of the chunks te be read
 #' @param header Does the csv file have a header with column names?
 #' @param sep field separator to be used
 #' @param dec decimal separator to be used
 #' @param ... not used
+#'
+#' \code{read_laf_chunkwise} reads chunkwise from a LaF object created with \code{laf_open}.
+#' It offers more control over
+#' data specification.
+#' @param laf laf object created using LaF
+#' @rdname read_chunks
+#' @export
 read_csv_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec=".", ...){
   #TODO add colClasses...
   dm <- LaF::detect_dm_csv(file, header=header, sep=",", dec=".")
@@ -33,9 +38,6 @@ read_table_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep="\t", 
 }
 
 #' @rdname read_chunks
-#' \code{read_laf_chunk} reads chunkwise from a LaF object created with \code{laf_open}.
-#' It offers more control over
-#' data specification.
 #' @export
 read_laf_chunkwise <- function(laf, chunk_size=5000L){
   tbl_chunk(laf, nrows = chunk_size)

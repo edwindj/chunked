@@ -3,6 +3,7 @@
 \name{read_csv_chunkwise}
 \alias{read_csv2_chunkwise}
 \alias{read_csv_chunkwise}
+\alias{read_laf_chunkwise}
 \alias{read_table_chunkwise}
 \title{Read data from text files chunkwise}
 \usage{
@@ -14,6 +15,8 @@ read_csv2_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = ";",
 
 read_table_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = "\\t",
   dec = ".", ...)
+
+read_laf_chunkwise(laf, chunk_size = 5000L)
 }
 \arguments{
 \item{file}{path of texst file}
@@ -26,7 +29,13 @@ read_table_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = "\\t",
 
 \item{dec}{decimal separator to be used}
 
-\item{...}{not used}
+\item{...}{not used
+
+\code{read_laf_chunkwise} reads chunkwise from a LaF object created with \code{laf_open}.
+It offers more control over
+data specification.}
+
+\item{laf}{laf object created using LaF}
 }
 \description{
 read_csv_chunk will open a connection to a text file. Subsequent dplyr verbs and commands
