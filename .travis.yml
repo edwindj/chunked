@@ -2,11 +2,6 @@ language: r
 warnings_are_errors: true
 sudo: required
 
-r_binary_packages:
- - LaF
- - dplyr
- - lazyeval
-
 env:
  global:
    - CRAN: http://cran.rstudio.com
