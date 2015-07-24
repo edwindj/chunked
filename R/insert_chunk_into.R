@@ -14,7 +14,6 @@ insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALS
 
   class(df) <- "data.frame"
   con <- dest$con
-  names(types) <- names(df)
 
   dplyr::db_begin(con)
   on.exit(dplyr::db_rollback(con))
@@ -22,6 +21,7 @@ insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALS
     warning("Table ", table, " already exists.", call. = FALSE)
   } else {
     types <-dplyr::db_data_type(con, df)
+    names(types) <- names(df)
     dplyr::db_create_table(con, table, types, temporary = temporary)
   }
 

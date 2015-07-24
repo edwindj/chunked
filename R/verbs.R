@@ -1,5 +1,10 @@
+#' Supported dplyr verbs
+#'
+#' \code{chunked} implements to following dplyr verbs
 #' @export
 #' @import dplyr
+#' @rdname dplyr
+#' @aliases filter
 select_.tbl_chunk <- function(.data, ..., .dots){
   .dots <- lazyeval::all_dots(.dots, ...)
   cmd <- lazyeval::lazy(select_(.data, .dots=.dots))
@@ -8,6 +13,7 @@ select_.tbl_chunk <- function(.data, ..., .dots){
 
 
 #' @export
+#' @rdname dplyr
 filter_.tbl_chunk <- function(.data, ..., .dots){
   .dots <- lazyeval::all_dots(.dots, ...)
   cmd <- lazyeval::lazy(filter_(.data, .dots=.dots))

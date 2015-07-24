@@ -30,7 +30,7 @@ read_table_chunks(file, chunk_size = 5000L, header = TRUE, sep = "\\t",
 }
 \description{
 read_csv_chunk will open a connection to a text file. Subsequent dplyr verbs and commands
-are recorded until \code{collect} or \code{write_csv_chunks} is called. In that case
+are recorded until \code{collect} or \code{\link{write_csv_chunks}} is called. In that case
 the recorded commands will be executed chunk by chunk.
 }
 \details{

@@ -12,15 +12,22 @@
 #' @param ... passed through to \code{\link{read.table}}
 write_csv_chunks <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
   df <- x$first_chunk(x$cmds)
-  if (is.character(file)){
-    file <- file(file, "w+")
+  file_name <- NULL
+  if (is.character(file) && file != ""){
+    file_name <- file
+    file <- file(file_name, "wt")
     on.exit(close(file))
   }
   write.table(df, file=file, col.names = col.names, row.names=row.names, sep=sep, dec=dec, ...)
   while(NROW(df <- x$next_chunk(x$cmds))){
     write.table(df, file = file, col.names = FALSE, row.names=row.names, sep=sep, dec=dec, ...)
   }
-  invisible(x)
+
+  if (is.null(file_name)){
+    invisible(x)
+  } else{
+    invisible(read_csv_chunks(file=file_name, sep=sep, dec=dec, header=col.names))
+  }
 }
 
 #' @export
