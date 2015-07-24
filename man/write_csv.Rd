@@ -26,7 +26,32 @@ write_csv2_chunkwise(x, file = "", sep = ",", dec = ".",
 
 \item{...}{passed through to \code{\link{read.table}}}
 }
+\value{
+chunkwise object (tbl_chunk), when writing to a file it refers to the
+newly created file, otherwise to \code{x}.
+}
 \description{
 Writes data to a csv file chunk by chunk.
+}
+\examples{
+# create csv file for demo purpose
+in_file <- file.path(tempdir(), "in.csv")
+write.csv(women, in_file, row.names = FALSE, quote = FALSE)
+
+#
+women_chunked <-
+  read_csv_chunkwise(in_file) \%>\%  #open chunkwise connection
+  mutate(ratio = weight/height) \%>\%
+  filter(ratio > 2) \%>\%
+  select(height, ratio) \%>\%
+  inner_join(data.frame(height=63:66)) # you can join with data.frames!
+
+# no processing done until
+out_file <- file.path(tempdir(), "processed.csv")
+women_chunked \%>\%
+  write_csv_chunkwise(file=out_file)
+
+head(women_chunked) # works (without processing all data...)
+
 }
 

@@ -16,6 +16,7 @@
 #' It offers more control over
 #' data specification.
 #' @param laf laf object created using LaF
+#' @example ./examples/read.R
 #' @rdname read_chunks
 #' @export
 read_csv_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec=".", ...){

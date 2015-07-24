@@ -43,7 +43,7 @@ tbl <-
   select(col1, col2, col5) %>%
   filter(col1 > 10) %>% 
   mutate(col6 = col1 + col2) %>% 
-  insert_chunks_into(db, 'my_large_table')
+  insert_chunkwise_into(db, 'my_large_table')
   
 # tbl now points to the table in sqlite.
 ```
@@ -63,7 +63,7 @@ collect(data_chunks)
 # or
 write_csv_chunkwise(data_chunks, "test.csv")
 # or
-insert_chunks_into(data_chunks, db, "test")
+insert_chunkwise_into(data_chunks, db, "test")
 ```
 Syntax completion in RStudio with 'chunked' just works.
 

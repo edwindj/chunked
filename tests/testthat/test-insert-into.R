@@ -4,9 +4,9 @@ source("util.R")
 tbl_women <- get_tbl_women()
 db <- get_empty_db()
 
-describe("insert_chunks_into",{
+describe("insert_chunkwise_into",{
   it("can insert into a db",{
-    tbl <- tbl_women %>% insert_chunks_into(db, "women", temporary=T)
+    tbl <- tbl_women %>% insert_chunkwise_into(db, "women", temporary=T)
     expect_equal(tbl %>% as.data.frame()
                 ,tbl_women %>% as.data.frame()
                 )
@@ -15,7 +15,7 @@ describe("insert_chunks_into",{
     tbl_women2 <-
       tbl_women %>% mutate(ratio = weight/height)
 
-    tbl2 <- tbl_women2 %>% insert_chunks_into(db, "women2", temporary=T)
+    tbl2 <- tbl_women2 %>% insert_chunkwise_into(db, "women2", temporary=T)
     expect_equal(tbl2 %>% as.data.frame()
                 ,tbl_women2 %>% as.data.frame()
     )

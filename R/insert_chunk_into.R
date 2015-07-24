@@ -8,7 +8,7 @@
 #' @param temporary Should the table be removed when the database connection is closed?
 #' @param analyze Should the table be analyzed after import?
 #' @return a \code{\link{tbl}} object pointing to the table in database \code{dest}.
-insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALSE){
+insert_chunkwise_into <- function(x, dest, table, temporary = FALSE, analyze = FALSE){
   cmds <- x$cmds
   df <- x$first_chunk(cmds)
 
@@ -47,5 +47,5 @@ insert_chunks_into <- function(x, dest, table, temporary = FALSE, analyze = FALS
 # db <- src_sqlite("ext-data/women.db", create=TRUE)
 #
 # read_csv_chunkwise("ext-data/diamonds.csv") %>%
-#   insert_chunks_into(db, "diamonds")
+#   insert_chunkwise_into(db, "diamonds")
 

@@ -10,6 +10,9 @@
 #' @param col.names should column names be written?
 #' @param row.names should row names be written?
 #' @param ... passed through to \code{\link{read.table}}
+#' @return chunkwise object (tbl_chunk), when writing to a file it refers to the
+#' newly created file, otherwise to \code{x}.
+#' @example ./examples/read.R
 write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
   df <- x$first_chunk(x$cmds)
   file_name <- NULL
@@ -26,6 +29,7 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
   if (is.null(file_name)){
     invisible(x)
   } else{
+    flush(file) # otherwise code may be to fast...
     invisible(read_csv_chunkwise(file=file_name, sep=sep, dec=dec, header=col.names))
   }
 }
