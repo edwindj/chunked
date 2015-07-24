@@ -10,7 +10,7 @@
 #' @param col.names should column names be written?
 #' @param row.names should row names be written?
 #' @param ... passed through to \code{\link{read.table}}
-write_csv_chunks <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
+write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
   df <- x$first_chunk(x$cmds)
   file_name <- NULL
   if (is.character(file) && file != ""){
@@ -26,12 +26,12 @@ write_csv_chunks <- function(x, file="", sep=",", dec=".", col.names = TRUE, row
   if (is.null(file_name)){
     invisible(x)
   } else{
-    invisible(read_csv_chunks(file=file_name, sep=sep, dec=dec, header=col.names))
+    invisible(read_csv_chunkwise(file=file_name, sep=sep, dec=dec, header=col.names))
   }
 }
 
 #' @export
 #' @rdname write_csv
-write_csv2_chunks <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
-  write_csv_chunks(x=x, file=file, sep=sep, dec=dec, col.names=col.names, row.names=row.names, ...)
+write_csv2_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
+  write_csv_chunkwise(x=x, file=file, sep=sep, dec=dec, col.names=col.names, row.names=row.names, ...)
 }

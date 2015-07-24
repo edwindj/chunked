@@ -75,7 +75,7 @@ as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
 
 # write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)
 #
-# women_chunked <- read_csv_chunks("ext-data/women.csv", chunk_size = 5)
+# women_chunked <- read_csv_chunkwise("ext-data/women.csv", chunk_size = 5)
 #
 # w <-
 #   women_chunked %>%
@@ -86,6 +86,6 @@ as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
 # w %>% collect()
 # w
 #
-# w %>% write_csv_chunks(file="ext-data/test.csv")
+# w %>% write_csv_chunkwise(file="ext-data/test.csv")
 #
 # inner_join(w, women)
