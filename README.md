@@ -67,7 +67,20 @@ insert_chunkwise_into(data_chunks, db, "test")
 ```
 Syntax completion in RStudio with 'chunked' just works.
 
-# Excluded verbs
+# Dplyr verbs
+
+`chunked` implements the following dplyr verbs:
+
+- `filter`
+- `select`
+- `mutate`
+- `mutate_each`
+- `transmute`
+- `do`
+- `inner_join`
+- `left_join`
+- `semi_join`
+- `anti_join`
 
 Since data is processed in chunks, some dplyr verbs are not implemented, because their results may differ from
 processing on the whole data set.
@@ -76,6 +89,8 @@ Not implemented:
 - `summarize`
 - `group_by`
 - `arrange`
+- `right_join`
+- `full_join`
 
 _Note that using `do` it is possible to do grouping and summarization with `chunked`_, but you have 
 to be explicit in how to aggregate the results from the chunks. 
