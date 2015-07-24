@@ -6,7 +6,7 @@ arrange_.tbl_chunk <- function(.data, ..., .dots){
 
 
 #' @export
-group_by.tbl_chunk <- function(.data, ..., .dots, add=FALSE){
+group_by_.tbl_chunk <- function(.data, ..., .dots, add=FALSE){
   stop("group_by is not supported on a chunked text file, because data is processed chunk by chunk."
        , call. = FALSE)
 }
