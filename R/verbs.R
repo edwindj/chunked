@@ -6,6 +6,12 @@ select_.tbl_chunk <- function(.data, ..., .dots){
   record(.data, cmd)
 }
 
+#' @export
+rename_.tbl_chunk <- function(.data, ..., .dots){
+  .dots <- lazyeval::all_dots(.dots, ...)
+  cmd <- lazyeval::lazy(rename_(.data, .dots=.dots))
+  record(.data, cmd)
+}
 
 #' @export
 filter_.tbl_chunk <- function(.data, ..., .dots){
@@ -66,7 +72,6 @@ anti_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
   cmd <- lazyeval::lazy(semi_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
-
 
 #' @export
 tbl_vars.tbl_chunk <- function(x){
