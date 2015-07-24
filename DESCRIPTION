@@ -11,3 +11,4 @@ License: GPL-2
 LazyData: TRUE
 Depends: dplyr
 Imports: LaF, utils, lazyeval
+Suggests: testthat

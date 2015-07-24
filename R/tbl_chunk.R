@@ -66,19 +66,26 @@ record <- function(.data, cmd){
   .data
 }
 
+#' @export
+as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
+  as.data.frame(collect(x), row.names = row.names, optional=optional, ...)
+}
+
 ### testing
 
 # write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)
 #
-# women_chunked <- read_csv_chunks("ext-data/women.csv")
+# women_chunked <- read_csv_chunks("ext-data/women.csv", chunk_size = 5)
 #
 # w <-
 #   women_chunked %>%
 #   mutate(height_m = height * 2.54/100) %>%
-#   filter(height_m > 1.50) %>%
-#   select(height_m)
+#   filter(height_m < 1.50) %>%
+#   select(weight, height_m)
 #
 # w %>% collect()
 # w
 #
 # w %>% write_csv_chunks(file="ext-data/test.csv")
+#
+# inner_join(w, women)

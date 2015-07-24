@@ -36,6 +36,35 @@ do_.tbl_chunk <- function(.data, ..., .dots){
 }
 
 #' @export
+inner_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
+  # note that x is named .data in the lazy evaluation
+  cmd <- lazyeval::lazy(inner_join(.data, y, by, copy, ...))
+  record(x, cmd)
+}
+
+#' @export
+left_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
+  # note that x is named .data in the lazy evaluation
+  cmd <- lazyeval::lazy(left_join(.data, y, by, copy, ...))
+  record(x, cmd)
+}
+
+#' @export
+semi_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
+  # note that x is named .data in the lazy evaluation
+  cmd <- lazyeval::lazy(semi_join(.data, y, by, copy, ...))
+  record(x, cmd)
+}
+
+#' @export
+anti_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
+  # note that x is named .data in the lazy evaluation
+  cmd <- lazyeval::lazy(semi_join(.data, y, by, copy, ...))
+  record(x, cmd)
+}
+
+
+#' @export
 tbl_vars.tbl_chunk <- function(x){
   names(tbl$first_chunk(x$cmds))
 }
