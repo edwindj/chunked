@@ -65,7 +65,7 @@ write_csv_chunkwise(data_chunks, "test.csv")
 # or
 insert_chunkwise_into(data_chunks, db, "test")
 ```
-Syntax completion in RStudio with 'chunked' just works.
+Syntax completion of variables of a chunkwise file in RStudio works like a charm...
 
 # Dplyr verbs
 
