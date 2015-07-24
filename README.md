@@ -1,8 +1,8 @@
 # chunked
 [![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/edwindj/chunked?branch=master)](https://ci.appveyor.com/project/edwindj/chunked)
-R is a great tool, but does not score well on line processing speed of text files with data.
-`chunked` is a package helping you to process large text files with _dplyr_ that you don't want to completely load in memory.
+R is a great tool, but processing large text data files is cumbersome.
+`chunked` helps you to process large text files with _dplyr_ while loading only a part of the data in memory.
 It builds on the execellent R package [_LaF_](https://github.com/djvanderlaan/LaF).
 
 Processing commands are writing in dplyr syntax, and `chunked` (using `LaF`) will take care that chunk by chunk is
