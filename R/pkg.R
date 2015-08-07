@@ -4,7 +4,11 @@
 #'
 #' @section Implemented dplyr verbs:
 #'
+#' filter, select, do, left_join, inner_join
+#'
 #' @section Not implemented:
+#'
+#'  full_join, right_join, group_by, arrange, tail
 #'
 #'
 #' @docType package

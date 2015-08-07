@@ -8,7 +8,7 @@
 write_csv_chunkwise(x, file = "", sep = ",", dec = ".",
   col.names = TRUE, row.names = FALSE, ...)
 
-write_csv2_chunkwise(x, file = "", sep = ",", dec = ".",
+write_csv2_chunkwise(x, file = "", sep = ";", dec = ",",
   col.names = TRUE, row.names = FALSE, ...)
 }
 \arguments{
