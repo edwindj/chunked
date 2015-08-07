@@ -1,6 +1,6 @@
 # chunked
 
-![version](http://www.r-pkg.org/badges/version/chunked)
+[![version](http://www.r-pkg.org/badges/version/chunked)](http://www.r-pkg.org/pkg/chunked)
 [![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/edwindj/chunked?branch=master)](https://ci.appveyor.com/project/edwindj/chunked)
 [![Coverage Status](https://img.shields.io/coveralls/edwindj/chunked.svg)](https://coveralls.io/r/edwindj/chunked?branch=master)
@@ -20,6 +20,11 @@ data pre-processing.
 ```r
 devtools::install_github('edwindj/chunked')
 ```
+or (more stable) 
+```r
+install.packages('chunked', repos=c('https://cran.rstudio.com', 'http://edwindj.github.io/drat'))
+```
+
 
 Enjoy! Feedback is welcome...
 
