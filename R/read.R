@@ -21,7 +21,7 @@
 #' @export
 read_csv_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec=".", ...){
   #TODO add colClasses...
-  dm <- LaF::detect_dm_csv(file, header=header, sep=",", dec=".")
+  dm <- LaF::detect_dm_csv(file, header=header, sep=sep, dec=dec)
   laf <- LaF::laf_open(dm)
   read_laf_chunkwise(laf, chunk_size = chunk_size)
 }

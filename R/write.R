@@ -36,6 +36,6 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
 
 #' @export
 #' @rdname write_csv
-write_csv2_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
+write_csv2_chunkwise <- function(x, file="", sep=";", dec=",", col.names = TRUE, row.names = FALSE,...){
   write_csv_chunkwise(x=x, file=file, sep=sep, dec=dec, col.names=col.names, row.names=row.names, ...)
 }
