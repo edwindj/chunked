@@ -53,8 +53,8 @@ describe("transmute()", {
 
 describe("do()", {
   tbl_women <- get_tbl_women()
-  expect_equal(tbl_women %>% head(.) %>% as.data.frame,
-               women %>% head(.)
+  expect_equal(tbl_women %>% do(2 * .) %>% as.data.frame,
+               women %>% do(2 * . )
               )
 })
 
