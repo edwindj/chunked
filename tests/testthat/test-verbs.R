@@ -60,14 +60,28 @@ describe("do()", {
 
 describe("left_join",{
   women_half <- women %>% filter(height < 60) %>% mutate(count=1:n())
-  expect_equal( left_join(tbl_women, women_half) %>% as.data.frame()
-              ,  left_join(women, women_half)
+  expect_equal( left_join(tbl_women, women_half, by="height") %>% as.data.frame()
+              ,  left_join(women, women_half, by="height")
               )
 })
 
 describe("inner_join",{
   women_half <- women %>% filter(height < 60) %>% mutate(count=1:n())
-  expect_equal( inner_join(tbl_women, women_half) %>% as.data.frame()
-              , inner_join(women, women_half)
+  expect_equal( inner_join(tbl_women, women_half, by="height") %>% as.data.frame()
+              , inner_join(women, women_half, by="height")
+  )
+})
+
+describe("semi_join",{
+  women_half <- women %>% filter(height < 60) %>% mutate(count=1:n())
+  expect_equal( semi_join(tbl_women, women_half, by="height") %>% as.data.frame()
+              , semi_join(women, women_half, by="height")
+  )
+})
+
+describe("anti_join",{
+  women_half <- women %>% filter(height < 60) %>% mutate(count=1:n())
+  expect_equal( anti_join(tbl_women, women_half, by="height") %>% as.data.frame() %>% arrange(height)
+              , anti_join(women, women_half, by="height") %>% arrange(height)
   )
 })

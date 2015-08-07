@@ -69,7 +69,7 @@ semi_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
 anti_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
   # note that x is named .data in the lazy evaluation
   .data <- x
-  cmd <- lazyeval::lazy(semi_join(.data, y, by, copy, ...))
+  cmd <- lazyeval::lazy(anti_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
 
