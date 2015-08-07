@@ -75,7 +75,7 @@ anti_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
 
 #' @export
 tbl_vars.tbl_chunk <- function(x){
-  names(tbl$first_chunk(x$cmds))
+  names(collect(x, first_chunk_only=TRUE))
 }
 
 #' @export

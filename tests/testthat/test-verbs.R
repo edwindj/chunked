@@ -58,6 +58,10 @@ describe("do()", {
               )
 })
 
+describe("tbl_vars",{
+  expect_equal(tbl_vars(tbl_women), tbl_vars(women))
+})
+
 describe("left_join",{
   women_half <- women %>% filter(height < 60) %>% mutate(count=1:n())
   expect_equal( left_join(tbl_women, women_half, by="height") %>% as.data.frame()

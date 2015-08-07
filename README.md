@@ -81,6 +81,7 @@ Syntax completion of variables of a chunkwise file in RStudio works like a charm
 - `mutate_each`
 - `transmute`
 - `do`
+- `tbl_vars`
 - `inner_join`
 - `left_join`
 - `semi_join`

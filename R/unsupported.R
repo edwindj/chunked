@@ -28,6 +28,7 @@ full_join.tbl_chunk <- function(x,y,by=NULL, copy=FALSE, ...){
 }
 
 summarise_.tbl_chunk <- function(.data, ..., .dots){
-  stop("summarize is not supported on a chunked text file, because data is processed chunk by chunk."
+  stop("summarize is not supported on a chunked text file, because data is processed chunk by chunk.\n
+       You can use 'do' if needed or transfer the data to a database with 'insert_chunkwise_into'"
        , call.=FALSE)
 }
