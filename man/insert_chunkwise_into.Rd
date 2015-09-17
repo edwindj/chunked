@@ -2,7 +2,7 @@
 % Please edit documentation in R/insert_chunk_into.R
 \name{insert_chunkwise_into}
 \alias{insert_chunkwise_into}
-\title{insert chunks into a database}
+\title{insert data in chunks into a database}
 \usage{
 insert_chunkwise_into(x, dest, table, temporary = FALSE, analyze = FALSE)
 }
@@ -21,6 +21,6 @@ insert_chunkwise_into(x, dest, table, temporary = FALSE, analyze = FALSE)
 a \code{\link{tbl}} object pointing to the table in database \code{dest}.
 }
 \description{
-insert chunks into a database
+insert data in chunks into a database
 }
 

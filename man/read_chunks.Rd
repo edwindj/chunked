@@ -7,16 +7,16 @@
 \alias{read_table_chunkwise}
 \title{Read data from text files chunkwise}
 \usage{
-read_csv_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = ",",
+read_csv_chunkwise(file, chunk_size = 10000L, header = TRUE, sep = ",",
   dec = ".", ...)
 
-read_csv2_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = ";",
+read_csv2_chunkwise(file, chunk_size = 10000L, header = TRUE, sep = ";",
   dec = ",", ...)
 
-read_table_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = "\\t",
-  dec = ".", ...)
+read_table_chunkwise(file, chunk_size = 10000L, header = TRUE,
+  sep = "\\t", dec = ".", ...)
 
-read_laf_chunkwise(laf, chunk_size = 5000L)
+read_laf_chunkwise(laf, chunk_size = 10000L)
 }
 \arguments{
 \item{file}{path of texst file}
