@@ -1,6 +1,6 @@
-#' insert chunks into a database
+#' insert data in chunks into a database
 #'
-#' insert chunks into a database
+#' insert data in chunks into a database
 #' @export
 #' @param x tbl_chunk object
 #' @param dest database destination, e.g. src_sqlite()

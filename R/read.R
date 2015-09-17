@@ -19,7 +19,7 @@
 #' @example ./examples/read.R
 #' @rdname read_chunks
 #' @export
-read_csv_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec=".", ...){
+read_csv_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep=",", dec=".", ...){
   #TODO add colClasses...
   dm <- LaF::detect_dm_csv(file, header=header, sep=sep, dec=dec)
   laf <- LaF::laf_open(dm)
@@ -28,18 +28,18 @@ read_csv_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep=",", dec
 
 #' @rdname read_chunks
 #' @export
-read_csv2_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep=";", dec=",", ...){
+read_csv2_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep=";", dec=",", ...){
   read_csv_chunkwise(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
 }
 
 #' @rdname read_chunks
 #' @export
-read_table_chunkwise <- function(file, chunk_size=5000L, header=TRUE, sep="\t", dec=".", ...){
+read_table_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep="\t", dec=".", ...){
   read_csv_chunkwise(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
 }
 
 #' @rdname read_chunks
 #' @export
-read_laf_chunkwise <- function(laf, chunk_size=5000L){
+read_laf_chunkwise <- function(laf, chunk_size=1e4L){
   tbl_chunk(laf, nrows = chunk_size)
 }
