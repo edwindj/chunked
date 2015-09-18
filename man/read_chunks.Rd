@@ -5,18 +5,18 @@
 \alias{read_csv_chunkwise}
 \alias{read_laf_chunkwise}
 \alias{read_table_chunkwise}
-\title{Read data from text files chunkwise}
+\title{Read chunkwise data from text files}
 \usage{
-read_csv_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = ",",
+read_csv_chunkwise(file, chunk_size = 10000L, header = TRUE, sep = ",",
   dec = ".", ...)
 
-read_csv2_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = ";",
+read_csv2_chunkwise(file, chunk_size = 10000L, header = TRUE, sep = ";",
   dec = ",", ...)
 
-read_table_chunkwise(file, chunk_size = 5000L, header = TRUE, sep = "\\t",
-  dec = ".", ...)
+read_table_chunkwise(file, chunk_size = 10000L, header = TRUE,
+  sep = "\\t", dec = ".", ...)
 
-read_laf_chunkwise(laf, chunk_size = 5000L)
+read_laf_chunkwise(laf, chunk_size = 10000L)
 }
 \arguments{
 \item{file}{path of texst file}
@@ -39,11 +39,13 @@ data specification.}
 }
 \description{
 read_csv_chunk will open a connection to a text file. Subsequent dplyr verbs and commands
-are recorded until \code{collect} or \code{\link{write_csv_chunkwise}} is called. In that case
-the recorded commands will be executed chunk by chunk.
+are recorded until \code{collect}, \code{\link{write_csv_chunkwise}} is called. In that case
+the recorded commands will be executed chunk by chunk. This
 }
 \details{
-read_csv_chunkwise can be best combined with write_csv_chunkwise (see example)
+read_csv_chunkwise can be best combined with
+\code{\link{write_csv_chunkwise}} or
+\code{\link{insert_chunkwise_into}} (see example)
 }
 \examples{
 # create csv file for demo purpose

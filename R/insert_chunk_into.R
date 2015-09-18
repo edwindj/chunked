@@ -1,6 +1,8 @@
 #' insert chunks into a database
 #'
-#' insert chunks into a database
+#' \code{insert_chunkwise_into} can be used to insert chunks of data into a
+#' database. Typically \code{chunked} can be used to for preprocessing data
+#' before adding it to a database.
 #' @export
 #' @param x tbl_chunk object
 #' @param dest database destination, e.g. src_sqlite()
