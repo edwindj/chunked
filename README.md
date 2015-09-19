@@ -8,7 +8,7 @@ R is a great tool, but processing large text files with data is cumbersome.
 `chunked` helps you to process large text files with _dplyr_ while loading only a part of the data in memory.
 It builds on the execellent R package [_LaF_](https://github.com/djvanderlaan/LaF).
 
-Processing commands are writing in dplyr syntax, and `chunked` (using `LaF`) will take care that chunk by chunk is
+Processing commands are written in dplyr syntax, and `chunked` (using `LaF`) will take care that chunk by chunk is
 processed, taking far less memory than otherwise. `chunked` is useful for __select__-ing columns, __mutate__-ing columns
 and __filter__-ing rows. It is less helpful in __group__-ing and __summarize__-ation of large text files. It can be used in
 data pre-processing.
