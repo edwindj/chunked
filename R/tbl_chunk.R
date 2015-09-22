@@ -88,6 +88,7 @@ chunked_laf <- function(x, chunk_size=1e4){
 
   hasNext <- function(){
     !.completed
+    LaF::close()
   }
 
 }
