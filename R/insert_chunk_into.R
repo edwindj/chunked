@@ -1,4 +1,4 @@
-#' insert chunks into a database
+#' insert data in chunks into a database
 #'
 #' \code{insert_chunkwise_into} can be used to insert chunks of data into a
 #' database. Typically \code{chunked} can be used to for preprocessing data
@@ -50,4 +50,3 @@ insert_chunkwise_into <- function(x, dest, table, temporary = FALSE, analyze = F
 #
 # read_csv_chunkwise("ext-data/diamonds.csv") %>%
 #   insert_chunkwise_into(db, "diamonds")
-

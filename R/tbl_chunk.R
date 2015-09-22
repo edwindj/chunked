@@ -1,8 +1,8 @@
 
-tbl_chunk <- function(x, nrows=5000){
-
+tbl_chunk <- function(x, nrows=1e4L){
   columns <- 1:LaF::ncol(x)
   .completed <- FALSE
+  .chunk <- NULL
   nrows <- nrows
 
   reset <- function(){
@@ -11,25 +11,21 @@ tbl_chunk <- function(x, nrows=5000){
   }
 
   first_chunk <- function(cmds=NULL){
-    LaF::begin(x)
+    reset()
     next_chunk(cmds)
   }
 
-  play <- function(.data, cmds=NULL){
-    for (cmd in cmds){
-      .data <- lazyeval::lazy_eval(cmd, list(.data=.data))
-    }
-    .data
+  raw_chunk <- function(nrows){
+    ch <- LaF::next_block(x, columns=columns, nrows=nrows)
+    .completed <<- (nrow(ch) == 0)
+    ch
   }
 
   next_chunk <- function(cmds=NULL){
     res <- NULL
-
     while(NROW(res) == 0){
-      ch <- LaF::next_block(x, columns=columns, nrows=nrows)
-      .completed <<- (nrow(ch) == 0)
-
-      if (.completed){
+      ch <- raw_chunk(nrows)
+      if (is_complete()){
         return()
       }
       res <- play(ch, cmds)
@@ -41,34 +37,59 @@ tbl_chunk <- function(x, nrows=5000){
     .completed
   }
 
-#  TODO performance improvement
-#  set_select <- function(){
-#   }
-
   reset()
 
   structure(
-    list( reset = reset
-        , next_chunk = next_chunk
+    list( reset       = reset
+        , next_chunk  = next_chunk
         , first_chunk = first_chunk
         , is_complete = is_complete
-        , .laf = x
-        , cmds = list()
-        , play = play
+        , cmds        = list()
+        , play        = play
+        , src         = paste0("text file '", x@filename,"'")
         ),
-    class=c("tbl_chunk", "tbl")
+    class = c("tbl_chunk", "tbl")
   )
 }
 
 record <- function(.data, cmd){
   #cmd <- partial_eval(cmd)
   .data$cmds <- c(.data$cmds, list(cmd))
+  .data$.chunk <- NULL
+  .data
+}
+
+play <- function(.data, cmds=NULL){
+  for (cmd in cmds){
+    .data <- lazyeval::lazy_eval(cmd, list(.data=.data))
+  }
   .data
 }
 
 #' @export
 as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
   as.data.frame(collect(x), row.names = row.names, optional=optional, ...)
+}
+
+chunked_laf <- function(x, chunk_size=1e4){
+  .completed <- FALSE
+
+
+  reset <- function(){
+    .completed <- FALSE
+    LaF::begin(x)
+  }
+
+  nextElem <- function(){
+    ch <- LaF::next_block(x, columns=columns, nrows=nrows)
+    .completed <<- (nrow(ch) == 0)
+    ch
+  }
+
+  hasNext <- function(){
+    !.completed
+  }
+
 }
 
 ### testing

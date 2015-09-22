@@ -2,7 +2,7 @@
 % Please edit documentation in R/insert_chunk_into.R
 \name{insert_chunkwise_into}
 \alias{insert_chunkwise_into}
-\title{insert chunks into a database}
+\title{insert data in chunks into a database}
 \usage{
 insert_chunkwise_into(x, dest, table, temporary = FALSE, analyze = FALSE)
 }
@@ -21,8 +21,12 @@ insert_chunkwise_into(x, dest, table, temporary = FALSE, analyze = FALSE)
 a \code{\link{tbl}} object pointing to the table in database \code{dest}.
 }
 \description{
+<<<<<<< HEAD
 \code{insert_chunkwise_into} can be used to insert chunks of data into a
 database. Typically \code{chunked} can be used to for preprocessing data
 before adding it to a database.
+=======
+insert data in chunks into a database
+>>>>>>> 6dec007d26f720ea4d13e0f7c4a929cf407ce962
 }
 

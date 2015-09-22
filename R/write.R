@@ -41,8 +41,8 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
     invisible(x)
   } else{
     flush(file) # otherwise code may be to fast...
-    invisible(read_csv_chunkwise( file=file_name, sep=sep, dec=dec, header=col.names
-                                , chunk_size = chunk_size)
+    invisible(
+      read_csv_chunkwise( file=file_name, sep=sep, dec=dec, header=col.names)
              )
   }
 }

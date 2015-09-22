@@ -50,5 +50,8 @@ read_db_chunkwise <- function(x, chunk_size=1e4L, ...){
   if (!inherits(x, "tbl_sql")){
     stop("'x' must be a tbl object from a database")
   }
-  x$query$fetch_paged()
+  x$query$fetch_paged(chunk_size = chunk_size)
+}
+
+tbl_chunked_db <- function(x, chunk_size=1e4L){
 }

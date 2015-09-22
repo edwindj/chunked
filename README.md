@@ -3,7 +3,7 @@
 [![version](http://www.r-pkg.org/badges/version/chunked)](http://www.r-pkg.org/pkg/chunked)
 [![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/edwindj/chunked?branch=master)](https://ci.appveyor.com/project/edwindj/chunked)
-[![Coverage Status](https://img.shields.io/coveralls/edwindj/chunked.svg)](https://coveralls.io/r/edwindj/chunked?branch=master)
+[![Coverage Status](https://coveralls.io/repos/edwindj/chunked/badge.svg?branch=master&service=github)](https://coveralls.io/github/edwindj/chunked?branch=master)
 R is a great tool, but processing large text files with data is cumbersome.
 `chunked` helps you to process large text files with _dplyr_ while loading only a part of the data in memory.
 It builds on the execellent R package [_LaF_](https://github.com/djvanderlaan/LaF).
