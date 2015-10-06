@@ -11,11 +11,6 @@ tbl_chunk <- function(x, nrows=1e4L){
   }
 
   first_chunk <- function(cmds=NULL){
-#     if (is.null(.chunk)){
-#       reset()
-#       .chunk <<- next_chunk(cmds)
-#     }
-#     .chunk
     reset()
     next_chunk(cmds)
   }

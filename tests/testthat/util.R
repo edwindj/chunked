@@ -15,3 +15,8 @@ get_empty_db <- function(){
   tmp <- file.path(tempdir(), "women.db")
   src_sqlite(tmp, create=TRUE)
 }
+
+get_women_db <- function(){
+  db <- get_empty_db()
+  dplyr::copy_to(db, women)
+}

@@ -3,6 +3,7 @@
 \name{write_csv_chunkwise}
 \alias{write_csv2_chunkwise}
 \alias{write_csv_chunkwise}
+\alias{write_table_chunkwise}
 \title{Write chunks to a csv file}
 \usage{
 write_csv_chunkwise(x, file = "", sep = ",", dec = ".",
@@ -10,6 +11,9 @@ write_csv_chunkwise(x, file = "", sep = ",", dec = ".",
 
 write_csv2_chunkwise(x, file = "", sep = ";", dec = ",",
   col.names = TRUE, row.names = FALSE, ...)
+
+write_table_chunkwise(x, file = "", sep = "\\t", dec = ".",
+  col.names = TRUE, row.names = TRUE, ...)
 }
 \arguments{
 \item{x}{tbl_chunk object pointing to a text file}
@@ -31,7 +35,10 @@ chunkwise object (tbl_chunk), when writing to a file it refers to the
 newly created file, otherwise to \code{x}.
 }
 \description{
-Writes data to a csv file chunk by chunk.
+Writes data to a csv file chunk by chunk. This function must be just in
+conjunction with \code{\link{read_csv_chunkwise}}. Chunks of data will
+be read, processed and written when this function is called.
+For writing to a database use \code{\link{insert_chunkwise_into}}.
 }
 \examples{
 # create csv file for demo purpose
