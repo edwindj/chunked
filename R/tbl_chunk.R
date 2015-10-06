@@ -76,6 +76,64 @@ as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
   as.data.frame(collect(x), row.names = row.names, optional=optional, ...)
 }
 
+chunked_laf <- function(x, chunk_size = 1e4L){
+  .completed <- FALSE
+
+  reset <- function(){
+    LaF::begin(x)
+    .completed <<- FALSE
+  }
+
+  hasNext <- function(){
+    !.completed
+  }
+
+  nextElem <- function(){
+    if (.completed){
+      return(NULL)
+    }
+
+    ch <- LaF::next_block(x, nrows = chunk_size)
+    N <- nrow(ch)
+
+    if ( N < chunk_size){
+      .completed <<- TRUE
+    }
+
+    if (N == 0){
+      return(NULL)
+    }
+    ch
+  }
+
+  reset()
+  structure(
+    list( reset    = reset
+        , hasNext  = hasNext
+        , nextElem = nextElem
+        ),
+    class="chunked_laf"
+  )
+}
+
+chunked_tbl_sql <- function(x, chunk_size = 1e4L){
+  reset <- function(){
+  }
+
+  hasNext <- function(){
+  }
+
+  nextElem <- function(){
+  }
+
+  structure(
+    list( reset = reset
+        , hasNext = hasNext
+        , nextElem = nextElem
+        ),
+    class="chunked_tbl_sql"
+  )
+}
 ### testing
 
 # write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)

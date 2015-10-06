@@ -13,7 +13,7 @@
 #' @return chunkwise object (tbl_chunk), when writing to a file it refers to the
 #' newly created file, otherwise to \code{x}.
 #' @example ./examples/read.R
-write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
+write_csv_chunkwise <- function(x, file="", sep=",", dec = ".", col.names = TRUE, row.names = FALSE,...){
   df <- x$first_chunk(x$cmds)
   file_name <- NULL
   if (is.character(file) && file != ""){
