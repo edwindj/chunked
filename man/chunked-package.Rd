@@ -21,6 +21,20 @@ Processing commands are writing in dplyr syntax, and \code{chunked}
 \section{Implemented dplyr verbs}{
 
 
+\itemize{
+ \item filter
+ \item select
+ \item rename
+ \item mutate
+ \item transmute
+ \item do
+ \item left_join
+ \item inner_join
+ \item anti_join
+ \item semi_join
+ \item tbl_vars
+ \item collect
+}
 
 filter, select, do, left_join, inner_join
 }
@@ -28,7 +42,14 @@ filter, select, do, left_join, inner_join
 \section{Not implemented}{
 
 
- \itemize
- full_join, right_join, group_by, arrange, tail
+ The following operators are not implemented because data in \code{chunked} is processed
+ chunkwise, so these are not available.
+ \itemize{
+  \item full_join
+  \item right_join
+  \item group_by
+  \item arrange
+  \item tail
+ }
 }
 

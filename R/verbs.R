@@ -75,7 +75,10 @@ anti_join.tbl_chunk <- function(x, y, by=NULL, copy=FALSE, ...){
 
 #' @export
 tbl_vars.tbl_chunk <- function(x){
-  names(collect(x, first_chunk_only=TRUE))
+  if (is.null(x$.vars)){
+    x$.vars <- names(collect(x, first_chunk_only=TRUE))
+  }
+  x$.vars
 }
 
 #' @export
@@ -91,9 +94,10 @@ collect.tbl_chunk <- function(x, first_chunk_only=FALSE, ...){
   if (isTRUE(first_chunk_only)){
     return(res)
   }
+
   res <- list(res)
   while (!x$is_complete()){
     res[[length(res)+1]] <- x$next_chunk(cmds)
   }
-  rbind_all(res)
+  bind_rows(res)
 }

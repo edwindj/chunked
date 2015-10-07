@@ -47,15 +47,15 @@ tbl_chunk <- function(x, nrows=1e4L){
         , cmds        = list()
         , play        = play
         , src         = paste0("text file '", x@filename,"'")
+        , .vars       = NULL
         ),
     class = c("tbl_chunk", "tbl")
   )
 }
 
 record <- function(.data, cmd){
-  #cmd <- partial_eval(cmd)
   .data$cmds <- c(.data$cmds, list(cmd))
-  .data$.chunk <- NULL
+  .data$.vars <- NULL
   .data
 }
 
@@ -111,24 +111,6 @@ chunked_laf <- function(x, chunk_size = 1e4L){
   )
 }
 
-chunked_tbl_sql <- function(x, chunk_size = 1e4L){
-  reset <- function(){
-  }
-
-  hasNext <- function(){
-  }
-
-  nextElem <- function(){
-  }
-
-  structure(
-    list( reset = reset
-        , hasNext = hasNext
-        , nextElem = nextElem
-        ),
-    class="chunked_tbl_sql"
-  )
-}
 ### testing
 
 # write.csv(women, "ext-data/women.csv", row.names = FALSE, quote=FALSE)
