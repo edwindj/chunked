@@ -47,15 +47,15 @@ tbl_chunk <- function(x, nrows=1e4L){
         , cmds        = list()
         , play        = play
         , src         = paste0("text file '", x@filename,"'")
+        , .vars       = NULL
         ),
     class = c("tbl_chunk", "tbl")
   )
 }
 
 record <- function(.data, cmd){
-  #cmd <- partial_eval(cmd)
   .data$cmds <- c(.data$cmds, list(cmd))
-  .data$.chunk <- NULL
+  .data$.vars <- NULL
   .data
 }
 
@@ -71,26 +71,44 @@ as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
   as.data.frame(collect(x), row.names = row.names, optional=optional, ...)
 }
 
-chunked_laf <- function(x, chunk_size=1e4){
+chunked_laf <- function(x, chunk_size = 1e4L){
   .completed <- FALSE
 
-
   reset <- function(){
-    .completed <- FALSE
     LaF::begin(x)
-  }
-
-  nextElem <- function(){
-    ch <- LaF::next_block(x, columns=columns, nrows=nrows)
-    .completed <<- (nrow(ch) == 0)
-    ch
+    .completed <<- FALSE
   }
 
   hasNext <- function(){
     !.completed
-    LaF::close()
   }
 
+  nextElem <- function(){
+    if (.completed){
+      return(NULL)
+    }
+
+    ch <- LaF::next_block(x, nrows = chunk_size)
+    N <- nrow(ch)
+
+    if ( N < chunk_size){
+      .completed <<- TRUE
+    }
+
+    if (N == 0){
+      return(NULL)
+    }
+    ch
+  }
+
+  reset()
+  structure(
+    list( reset    = reset
+        , hasNext  = hasNext
+        , nextElem = nextElem
+        ),
+    class="chunked_laf"
+  )
 }
 
 ### testing

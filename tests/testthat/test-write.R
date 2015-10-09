@@ -10,7 +10,7 @@ test_that("write_csv_chunkwise works", {
   expect_equal(iris2, iris)
 })
 
-test_that("write_csv_chunkwise works", {
+test_that("write_csv2_chunkwise works", {
   tmp <- tempfile()
   write_csv2_chunkwise(tbl_iris, tmp, row.names = FALSE)
   iris2 <- read.csv2(tmp)

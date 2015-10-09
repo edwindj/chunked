@@ -46,12 +46,26 @@ read_laf_chunkwise <- function(laf, chunk_size=1e4L){
   tbl_chunk(laf, nrows = chunk_size)
 }
 
-read_db_chunkwise <- function(x, chunk_size=1e4L, ...){
-  if (!inherits(x, "tbl_sql")){
-    stop("'x' must be a tbl object from a database")
-  }
-  x$query$fetch_paged(chunk_size = chunk_size)
+#' Read chunkwise from a data source
+#'
+#' @param src source to read from
+#' @param chunk_size size of the chunks
+#' @param ... parameters used by specific classes
+#' @return an object of type tbl_chunk
+#' @export
+#' @rdname read_chunkwise
+read_chunkwise <- function(src, chunk_size = 1e4L, ...){
+  UseMethod("read_chunkwise")
 }
 
-tbl_chunked_db <- function(x, chunk_size=1e4L){
+#' @rdname read_chunkwise
+#' @param format used for specifying type of text file
+#' @export
+read_chunkwise.character <- function(src, chunk_size = 1e4L, format = c("csv", "csv2", "table"), ...){
+  format <- match.arg(format)
+  switch (format,
+    table = read_table_chunkwise( file = src, ..., chunk_size = chunk_size),
+    csv2 = read_csv2_chunkwise( file = src, ..., chunk_size = chunk_size),
+    read_csv_chunkwise( file = src, ..., chunk_size = chunk_size)
+  )
 }

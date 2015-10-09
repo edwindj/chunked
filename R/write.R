@@ -22,28 +22,27 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
     stop("Parameter 'x' is not an object of type 'tbl_chunk'. Please use the function
          'read_csv_chunkwise'", call.=FALSE)
   }
-
   df <- x$first_chunk(x$cmds)
   file_name <- NULL
   if (is.character(file) && file != ""){
     file_name <- file
-    file <- file(file_name, "wt")
-    on.exit(close(file))
+#     file <- file(file_name, open="wb")
+#     on.exit(close(file))
   }
-  write.table(df, file=file, col.names = col.names, row.names=row.names,
+  write.table(df, file=file_name, col.names = col.names, row.names=row.names,
               sep=sep, dec=dec, ...)
   while(NROW(df <- x$next_chunk(x$cmds))){
-    write.table(df, file = file, col.names = FALSE, row.names=row.names,
+    write.table(df, file = file_name, append = TRUE, col.names = FALSE, row.names=row.names,
                 sep=sep, dec=dec, ...)
   }
 
   if (is.null(file_name)){
     invisible(x)
   } else{
-    flush(file) # otherwise code may be to fast...
+#     close(file)  # otherwise code may be to fast...
     invisible(
       read_csv_chunkwise( file=file_name, sep=sep, dec=dec, header=col.names)
-             )
+    )
   }
 }
 
