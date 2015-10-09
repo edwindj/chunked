@@ -33,11 +33,11 @@ Enjoy! Feedback is welcome...
 Most common case is processing a large text file, select or add columns, filter it and 
 write the result back to a text file.
 ```r
-  read_csv_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
+  read_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
   select(col1, col2, col5) %>%
   filter(col1 > 10) %>% 
   mutate(col6 = col1 + col2) %>% 
-  write_csv_chunkwise("./large_file_out.csv")
+  write_chunkwise("./large_file_out.csv")
 ```
 
 `chunked` will write process the above statement in chunks of 5000 records. This is different from for example `read.csv` which reads all data into memory before processing it.
@@ -47,11 +47,11 @@ Another option is to use `chunked` as a preprocessing step before adding it to a
 db <- src_sqlite('test.db', create=TRUE)
 
 tbl <- 
-  read_csv_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
+  read_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
   select(col1, col2, col5) %>%
   filter(col1 > 10) %>% 
   mutate(col6 = col1 + col2) %>% 
-  insert_chunkwise_into(db, 'my_large_table')
+  write_chunkwise(db, 'my_large_table')
   
 # tbl now points to the table in sqlite.
 ```
@@ -60,18 +60,18 @@ tbl <-
 
 ## Lazy processing
 
-`chunked` will not start processing until `collect` or `write_csv_chunkwise` is called.
+`chunked` will not start processing until `collect` or `write_chunkwise` is called.
 ```r
 data_chunks <- 
-  read_csv_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
+  read_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
   select(col1, col3)
   
 # won't start processing until
 collect(data_chunks)
 # or
-write_csv_chunkwise(data_chunks, "test.csv")
+write_chunkwise(data_chunks, "test.csv")
 # or
-insert_chunkwise_into(data_chunks, db, "test")
+write_chunkwise(data_chunks, db, "test")
 ```
 Syntax completion of variables of a chunkwise file in RStudio works like a charm...
 

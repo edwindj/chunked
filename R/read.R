@@ -69,3 +69,9 @@ read_chunkwise.character <- function(src, chunk_size = 1e4L, format = c("csv", "
     read_csv_chunkwise( file = src, ..., chunk_size = chunk_size)
   )
 }
+
+#' @rdname read_chunkwise
+#' @export
+read_chunkwise.laf <- function(src, chunk_size = 1e4L, ...){
+  read_laf_chunkwise(laf=src, chunk_size = chunk_size)
+}

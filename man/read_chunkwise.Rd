@@ -3,12 +3,15 @@
 \name{read_chunkwise}
 \alias{read_chunkwise}
 \alias{read_chunkwise.character}
+\alias{read_chunkwise.laf}
 \title{Read chunkwise from a data source}
 \usage{
 read_chunkwise(src, chunk_size = 10000L, ...)
 
 \method{read_chunkwise}{character}(src, chunk_size = 10000L,
   format = c("csv", "csv2", "table"), ...)
+
+\method{read_chunkwise}{laf}(src, chunk_size = 10000L, ...)
 }
 \arguments{
 \item{src}{source to read from}

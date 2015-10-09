@@ -2,9 +2,13 @@
 % Please edit documentation in R/write.R
 \name{write_chunkwise}
 \alias{write_chunkwise}
+\alias{write_chunkwise.tbl_chunk}
 \title{Genereric function to write chunk by chunk}
 \usage{
 write_chunkwise(x, dest, ...)
+
+\method{write_chunkwise}{tbl_chunk}(x, dest, table, file = dest,
+  format = c("csv, csv2", "table"), ...)
 }
 \arguments{
 \item{x}{chunked input, e.g. created with \code{read_chunkwise}}
@@ -13,6 +17,13 @@ write_chunkwise(x, dest, ...)
 a \code{src_sql}.}
 
 \item{...}{parameters that will be passed to the specific implementations.}
+
+\item{table}{table to write to. Only used when dest is a data base(\code{src_sql})}
+
+\item{file}{File to write to}
+
+\item{format}{Specifies the text format for written to disk. Only used
+if \code{x} is a character.}
 }
 \description{
 Genereric function to write chunk by chunk

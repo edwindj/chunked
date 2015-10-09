@@ -103,6 +103,7 @@ write_table_chunkwise <- function(x, file="", sep="\t", dec=".", col.names=TRUE,
 #' @param dest where should the data be written. May be a character or
 #' a \code{src_sql}.
 #' @param ... parameters that will be passed to the specific implementations.
+#' @rdname write_chunkwise
 write_chunkwise <- function(x, dest, ...){
   UseMethod("write_chunkwise")
 }
@@ -112,9 +113,10 @@ write_chunkwise <- function(x, dest, ...){
 #' if \code{x} is a character.
 #' @param table table to write to. Only used when dest is a data base(\code{src_sql})
 #' @param file File to write to
+#' @rdname write_chunkwise
 write_chunkwise.tbl_chunk <- function( x, dest, table, file=dest
-                                     , format = c("csv, csv2", "table"), ...){
-  if (inherits(dest, "src_sql")){
+                                     , format = c("csv", "csv2", "table"), ...){
+  if (!missing(dest) && inherits(dest, "src_sql")){
     return(insert_chunkwise_into(x, dest, table, ...))
   }
   if (is.character(file)){
