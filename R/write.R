@@ -97,3 +97,35 @@ write_csv2_chunkwise <- function(x, file="", sep=";", dec=",", col.names = TRUE,
 write_table_chunkwise <- function(x, file="", sep="\t", dec=".", col.names=TRUE, row.names = TRUE, ...){
   write_csv_chunkwise(x=x, file=file, sep=sep, dec=dec, col.names=col.names, row.names=row.names, ...)
 }
+
+#' Genereric function to write chunk by chunk
+#' @export
+#' @param x chunked input, e.g. created with \code{read_chunkwise}
+#' @param dest where should the data be written. May be a character or
+#' a \code{src_sql}.
+#' @param ... parameters that will be passed to the specific implementations.
+write_chunkwise <- function(x, dest, ...){
+  UseMethod("write_chunkwise")
+}
+
+#' @export
+#' @param format Specifies the text format for written to disk. Only used
+#' if \code{x} is a character.
+#' @param table table to write to. Only used when dest is a data base(\code{src_sql})
+#' @param file File to write to
+write_chunkwise.tbl_chunk <- function( x, dest, table, file=dest
+                                     , format = c("csv, csv2", "table"), ...){
+  if (inherits(dest, "src_sql")){
+    return(insert_chunkwise_into(x, dest, table, ...))
+  }
+  if (is.character(file)){
+    writer <-
+      switch( match.arg(format),
+            csv2 = write_csv2_chunkwise,
+            table = write_table_chunkwise,
+            write_csv_chunkwise
+          )
+    return(writer(x, file=file, ...))
+  }
+}
+
