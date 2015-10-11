@@ -54,7 +54,7 @@ write.csv(women, in_file, row.names = FALSE, quote = FALSE)
 
 #
 women_chunked <-
-  read_csv_chunkwise(in_file) \%>\%  #open chunkwise connection
+  read_chunkwise(in_file) \%>\%  #open chunkwise connection
   mutate(ratio = weight/height) \%>\%
   filter(ratio > 2) \%>\%
   select(height, ratio) \%>\%
@@ -63,7 +63,7 @@ women_chunked <-
 # no processing done until
 out_file <- file.path(tempdir(), "processed.csv")
 women_chunked \%>\%
-  write_csv_chunkwise(file=out_file)
+  write_chunkwise(file=out_file)
 
 head(women_chunked) # works (without processing all data...)
 

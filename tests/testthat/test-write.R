@@ -24,5 +24,9 @@ test_that("write_csv2_chunkwise works", {
 test_that("write_chunkwise to db works", {
   db <- get_empty_db()
   iris2 <- write_chunkwise(tbl_iris, db, "iris")
-  expect_equal(as.data.frame(iris2), as.data.frame(tbl_iris))
+  expect_equal(as.data.frame(iris2)[1:4], as.data.frame(tbl_iris)[1:4])
+  tmp <- tempfile()
+  write_chunkwise(iris2, tmp, row.names = FALSE)
+  iris3 <- read.csv(tmp)
+  expect_equal(iris3, iris)
 })

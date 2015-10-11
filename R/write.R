@@ -46,44 +46,6 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
   }
 }
 
-#' @export
-write_csv_chunkwise.tbl_sql <- function(x, file="", sep=",", dec=".",
-                                        col.names = TRUE, row.names = FALSE,
-                                        chunk_size=1e4L,...){
-
-  file_name <- NULL
-  if (is.character(file) && file != ""){
-    file_name <- file
-    file <- file(file_name, "wt")
-    on.exit(close(file))
-  }
-
-  h <- head(x, n=1) # retrieve first record for writing headers to file
-  write.table(h[0,], file=file, col.names = col.names, row.names=row.names,
-              sep=sep, dec=dec, ...)
-
-
-  N <- x$query$nrow()
-  progress <- dplyr::progress_estimated(ceiling(N/chunk_size), min_time = 3)
-
-  # callback function that will be called for each chunk
-  write_chunk <- function(x_chunk){
-    write.table(x_chunk, file = file, col.names = FALSE, row.names=row.names,
-              sep=sep, dec=dec, ...)
-    progress$tick()
-  }
-
-  # execute query
-  x$query$fetch_paged(chunk_size, write_chunk)
-
-  if (is.null(file_name)){
-    invisible(x)
-  } else{
-    flush(file) # otherwise code may be to fast...
-    invisible(read_csv_chunkwise(file=file_name, sep=sep, dec=dec, header=col.names))
-  }
-}
-
 
 #' @export
 #' @rdname write_csv
@@ -130,3 +92,40 @@ write_chunkwise.tbl_chunk <- function( x, dest, table, file=dest
   }
 }
 
+#' @export
+write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
+                                    col.names = TRUE, row.names = FALSE,
+                                    chunk_size=1e4L,...){
+
+  file_name <- NULL
+  if (is.character(file) && file != ""){
+    file_name <- file
+    file <- file(file_name, "wt")
+    on.exit(close(file))
+  }
+
+  h <- head(x, n=1) # retrieve first record for writing headers to file
+  write.table(h[0,], file=file, col.names = col.names, row.names=row.names,
+              sep=sep, dec=dec, ...)
+
+
+  N <- x$query$nrow()
+  progress <- dplyr::progress_estimated(ceiling(N/chunk_size), min_time = 3)
+
+  # callback function that will be called for each chunk
+  write_chunk <- function(x_chunk){
+    write.table(x_chunk, file = file, col.names = FALSE, row.names=row.names,
+                sep=sep, dec=dec, ...)
+    progress$tick()
+  }
+
+  # execute query
+  x$query$fetch_paged(chunk_size, write_chunk)
+
+  if (is.null(file_name)){
+    invisible(x)
+  } else{
+    flush(file) # otherwise code may be to fast...
+    invisible(read_csv_chunkwise(file=file_name, sep=sep, dec=dec, header=col.names))
+  }
+}
