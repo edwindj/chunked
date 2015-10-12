@@ -15,14 +15,21 @@ data pre-processing.
 
 ## Install
 
-'chunked' is currently not available on CRAN. It can be installed with
+'chunked' can be installed with
+
+```r
+install.packages('chunked')
+```
+
+beta version with: 
+```r
+install.packages('chunked', repos=c('https://cran.rstudio.com', 'http://edwindj.github.io/drat'))
+```
+
+and the development version with:
 
 ```r
 devtools::install_github('edwindj/chunked')
-```
-or (more stable) 
-```r
-install.packages('chunked', repos=c('https://cran.rstudio.com', 'http://edwindj.github.io/drat'))
 ```
 
 

@@ -29,10 +29,10 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
 #     file <- file(file_name, open="wb")
 #     on.exit(close(file))
   }
-  write.table(df, file=file_name, col.names = col.names, row.names=row.names,
+  utils::write.table(df, file=file_name, col.names = col.names, row.names=row.names,
               sep=sep, dec=dec, ...)
   while(NROW(df <- x$next_chunk(x$cmds))){
-    write.table(df, file = file_name, append = TRUE, col.names = FALSE, row.names=row.names,
+    utils::write.table(df, file = file_name, append = TRUE, col.names = FALSE, row.names=row.names,
                 sep=sep, dec=dec, ...)
   }
 
@@ -105,7 +105,7 @@ write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
   }
 
   h <- head(x, n=1) # retrieve first record for writing headers to file
-  write.table(h[0,], file=file, col.names = col.names, row.names=row.names,
+  utils::write.table(h[0,], file=file, col.names = col.names, row.names=row.names,
               sep=sep, dec=dec, ...)
 
 
@@ -114,7 +114,7 @@ write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
 
   # callback function that will be called for each chunk
   write_chunk <- function(x_chunk){
-    write.table(x_chunk, file = file, col.names = FALSE, row.names=row.names,
+    utils::write.table(x_chunk, file = file, col.names = FALSE, row.names=row.names,
                 sep=sep, dec=dec, ...)
     progress$tick()
   }
