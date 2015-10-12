@@ -1,6 +1,6 @@
 #' @export
-print.tbl_chunk <- function(x, n=NULL, width=NULL, ...){
-  h <- if (is.null(n)) head.tbl_chunk(x) else head.tbl_chunk(x,n)
+print.chunkwise <- function(x, n=NULL, width=NULL, ...){
+  h <- if (is.null(n)) head.chunkwise(x) else head.chunkwise(x,n)
 
   cat("Source: chunked ", x$src, " [?? x ",ncol(h),"]\n", sep = "")
   cat("\n")

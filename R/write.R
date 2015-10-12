@@ -7,19 +7,19 @@
 #'
 #' @export
 #' @rdname write_csv
-#' @param x tbl_chunk object pointing to a text file
+#' @param x chunkwise object pointing to a text file
 #' @param file file \code{character} or connection where the csv file should be written
 #' @param sep field separator
 #' @param dec decimal separator
 #' @param col.names should column names be written?
 #' @param row.names should row names be written?
 #' @param ... passed through to \code{\link{read.table}}
-#' @return chunkwise object (tbl_chunk), when writing to a file it refers to the
+#' @return chunkwise object (chunkwise), when writing to a file it refers to the
 #' newly created file, otherwise to \code{x}.
 #' @example ./examples/read.R
 write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, row.names = FALSE,...){
-  if (!inherits(x, "tbl_chunk")){
-    stop("Parameter 'x' is not an object of type 'tbl_chunk'. Please use the function
+  if (!inherits(x, "chunkwise")){
+    stop("Parameter 'x' is not an object of type 'chunkwise'. Please use the function
          'read_csv_chunkwise'", call.=FALSE)
   }
   df <- x$first_chunk(x$cmds)
@@ -76,7 +76,7 @@ write_chunkwise <- function(x, dest, ...){
 #' @param table table to write to. Only used when dest is a data base(\code{src_sql})
 #' @param file File to write to
 #' @rdname write_chunkwise
-write_chunkwise.tbl_chunk <- function( x, dest, table, file=dest
+write_chunkwise.chunkwise <- function( x, dest, table, file=dest
                                      , format = c("csv", "csv2", "table"), ...){
   if (!missing(dest) && inherits(dest, "src_sql")){
     return(insert_chunkwise_into(x, dest, table, ...))

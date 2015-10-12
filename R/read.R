@@ -43,7 +43,7 @@ read_table_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep="\t", d
 #' @rdname read_chunks
 #' @export
 read_laf_chunkwise <- function(laf, chunk_size=1e4L){
-  tbl_chunk(laf, nrows = chunk_size)
+  chunkwise(laf, nrows = chunk_size)
 }
 
 #' Read chunkwise from a data source

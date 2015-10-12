@@ -16,7 +16,7 @@ write_table_chunkwise(x, file = "", sep = "\\t", dec = ".",
   col.names = TRUE, row.names = TRUE, ...)
 }
 \arguments{
-\item{x}{tbl_chunk object pointing to a text file}
+\item{x}{chunkwise object pointing to a text file}
 
 \item{file}{file \code{character} or connection where the csv file should be written}
 
@@ -31,7 +31,7 @@ write_table_chunkwise(x, file = "", sep = "\\t", dec = ".",
 \item{...}{passed through to \code{\link{read.table}}}
 }
 \value{
-chunkwise object (tbl_chunk), when writing to a file it refers to the
+chunkwise object (chunkwise), when writing to a file it refers to the
 newly created file, otherwise to \code{x}.
 }
 \description{

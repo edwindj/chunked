@@ -2,12 +2,12 @@
 % Please edit documentation in R/write.R
 \name{write_chunkwise}
 \alias{write_chunkwise}
-\alias{write_chunkwise.tbl_chunk}
+\alias{write_chunkwise.chunkwise}
 \title{Genereric function to write chunk by chunk}
 \usage{
 write_chunkwise(x, dest, ...)
 
-\method{write_chunkwise}{tbl_chunk}(x, dest, table, file = dest,
+\method{write_chunkwise}{chunkwise}(x, dest, table, file = dest,
   format = c("csv", "csv2", "table"), ...)
 }
 \arguments{

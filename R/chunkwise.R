@@ -1,5 +1,5 @@
 
-tbl_chunk <- function(x, nrows=1e4L){
+chunkwise <- function(x, nrows=1e4L){
   columns <- 1:LaF::ncol(x)
   .completed <- FALSE
   .chunk <- NULL
@@ -49,7 +49,7 @@ tbl_chunk <- function(x, nrows=1e4L){
         , src         = paste0("text file '", x@filename,"'")
         , .vars       = NULL
         ),
-    class = c("tbl_chunk", "tbl")
+    class = c("chunkwise", "tbl")
   )
 }
 
@@ -67,49 +67,49 @@ play <- function(.data, cmds=NULL){
 }
 
 #' @export
-as.data.frame.tbl_chunk <- function(x, row.names = NULL, optional = FALSE, ...){
+as.data.frame.chunkwise <- function(x, row.names = NULL, optional = FALSE, ...){
   as.data.frame(collect(x), row.names = row.names, optional=optional, ...)
 }
 
-chunked_laf <- function(x, chunk_size = 1e4L){
-  .completed <- FALSE
-
-  reset <- function(){
-    LaF::begin(x)
-    .completed <<- FALSE
-  }
-
-  hasNext <- function(){
-    !.completed
-  }
-
-  nextElem <- function(){
-    if (.completed){
-      return(NULL)
-    }
-
-    ch <- LaF::next_block(x, nrows = chunk_size)
-    N <- nrow(ch)
-
-    if ( N < chunk_size){
-      .completed <<- TRUE
-    }
-
-    if (N == 0){
-      return(NULL)
-    }
-    ch
-  }
-
-  reset()
-  structure(
-    list( reset    = reset
-        , hasNext  = hasNext
-        , nextElem = nextElem
-        ),
-    class="chunked_laf"
-  )
-}
+# chunked_laf <- function(x, chunk_size = 1e4L){
+#   .completed <- FALSE
+#
+#   reset <- function(){
+#     LaF::begin(x)
+#     .completed <<- FALSE
+#   }
+#
+#   hasNext <- function(){
+#     !.completed
+#   }
+#
+#   nextElem <- function(){
+#     if (.completed){
+#       return(NULL)
+#     }
+#
+#     ch <- LaF::next_block(x, nrows = chunk_size)
+#     N <- nrow(ch)
+#
+#     if ( N < chunk_size){
+#       .completed <<- TRUE
+#     }
+#
+#     if (N == 0){
+#       return(NULL)
+#     }
+#     ch
+#   }
+#
+#   reset()
+#   structure(
+#     list( reset    = reset
+#         , hasNext  = hasNext
+#         , nextElem = nextElem
+#         ),
+#     class="chunked_laf"
+#   )
+# }
 
 ### testing
 
