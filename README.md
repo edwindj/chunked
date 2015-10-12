@@ -30,8 +30,10 @@ Enjoy! Feedback is welcome...
 
 # Usage
 
+## Text file -> process -> text file
+
 Most common case is processing a large text file, select or add columns, filter it and 
-write the result back to a text file.
+write the result back to a text file
 ```r
   read_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
   select(col1, col2, col5) %>%
@@ -41,6 +43,8 @@ write the result back to a text file.
 ```
 
 `chunked` will write process the above statement in chunks of 5000 records. This is different from for example `read.csv` which reads all data into memory before processing it.
+
+## Text file -> process -> database
 
 Another option is to use `chunked` as a preprocessing step before adding it to a database
 ```r
@@ -56,7 +60,9 @@ tbl <-
 # tbl now points to the table in sqlite.
 ```
 
-
+##  Db -> process -> Text file
+Chunked can be used to export chunkwise to a text file. Note however that in that case processing 
+takes place in the database and the chunkwise restrictions only apply to the writing.
 
 ## Lazy processing
 
