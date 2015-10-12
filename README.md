@@ -4,9 +4,9 @@
 [![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/edwindj/chunked?branch=master)](https://ci.appveyor.com/project/edwindj/chunked)
 [![Coverage Status](https://coveralls.io/repos/edwindj/chunked/badge.svg?branch=master&service=github)](https://coveralls.io/github/edwindj/chunked?branch=master)
-R is a great tool, but processing large text files with data is cumbersome.
+R is a great tool, but processing data in large text files is cumbersome.
 `chunked` helps you to process large text files with _dplyr_ while loading only a part of the data in memory.
-It builds on the execellent R package [_LaF_](https://github.com/djvanderlaan/LaF).
+It builds on the excellent R package [_LaF_](https://github.com/djvanderlaan/LaF).
 
 Processing commands are written in dplyr syntax, and `chunked` (using `LaF`) will take care that chunk by chunk is
 processed, taking far less memory than otherwise. `chunked` is useful for __select__-ing columns, __mutate__-ing columns
