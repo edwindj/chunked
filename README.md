@@ -114,7 +114,7 @@ to be explicit in how to aggregate the results from the chunks:
 ```R
 tmp <- tempfile()
 write.csv(iris, tmp, row.names=FALSE, quote=FALSE)
-iris_cw <- read_chunkwise(tmp, chunk_size = 30) # read in chunks of 30 rows
+iris_cw <- read_chunkwise(tmp, chunk_size = 30) # read in chunks of 30 rows for this example
 
 iris_cw %>% 
   do( group_by(., Species) %>%           # group in each chunk
@@ -122,7 +122,7 @@ iris_cw %>%
                  , w = n()
                  )
     ) %>% 
-  as.data.frame %>%  
+  as.data.frame %>%                      # since each Species has 50 records, results will be in multiple chunks
   group_by(Species) %>%                  # group the results from the chunk
   summarise(m = weighted.mean(m, w))     # and summarize it.
 ```
