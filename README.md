@@ -109,5 +109,20 @@ Not implemented:
 - `full_join`
 
 _Note that using `do` it is possible to do grouping and summarization with `chunked`_, but you have 
-to be explicit in how to aggregate the results from the chunks. 
+to be explicit in how to aggregate the results from the chunks:
 
+```R
+tmp <- tempfile()
+write.csv(iris, tmp, row.names=FALSE, quote=FALSE)
+iris_cw <- read_chunkwise(tmp, chunk_size = 30) # read in chunks of 30 rows
+
+iris_cw %>% 
+  do( group_by(., Species) %>%           # group in each chunk
+        summarise( m = mean(Sepal.Width) # and summarize in each chunk
+                 , w = n()
+                 )
+    ) %>% 
+  as.data.frame %>%  
+  group_by(Species) %>%                  # group the results from the chunk
+  summarise(m = weighted.mean(m, w))     # and summarize it.
+```
