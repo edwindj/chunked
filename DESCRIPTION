@@ -1,7 +1,7 @@
 Package: chunked
 Type: Package
 Title: Chunkwise Text-File Processing for 'dplyr'
-Version: 0.1.1
+Version: 0.2.0.9000
 Date: 2015-10-12
 Author: Edwin de Jonge
 Maintainer: Edwin de Jonge <edwindjonge@gmail.com>
@@ -9,6 +9,7 @@ Description: Text data can be processed chunkwise using 'dplyr' commands. These 
   so large files can be processed with limited memory using the 'LaF' package.
 License: GPL-2
 LazyData: TRUE
+BugReports:	https://github.com/edwindj/chunked/issues
 URL: https://github.com/edwindj/chunked
 Depends: dplyr
 Imports: LaF, utils, lazyeval
