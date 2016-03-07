@@ -34,6 +34,7 @@ transmute_.chunkwise <- function(.data, ..., .dots){
   record(.data, cmd)
 }
 
+#' @export
 summarise_.chunkwise <- function(.data, ..., .dots){
   warning("summarize on a chunked text file, produces summarizations of chunks."
           , call.=FALSE)
@@ -105,8 +106,6 @@ group_by_.chunkwise <- function(.data, ..., .dots, add=FALSE){
   cmd <- lazyeval::lazy(group_by_(.data, .dots=.dots, add=add))
   record(.data, cmd)
 }
-
-
 
 #' @export
 collect.chunkwise <- function(x, first_chunk_only=FALSE, ...){

@@ -67,5 +67,14 @@ women_chunked \%>\%
 
 head(women_chunked) # works (without processing all data...)
 
+\dontrun{
+iris_file <- file.path(tempdir(), "iris.csv")
+write.csv(iris, iris_file, row.names = FALSE, quote= FALSE)
+
+iris_chunked <-
+  read_chunkwise(iris_file, chunk_size = 49) \%>\% # 49 for demo purpose
+  group_by(Species) \%>\%
+  summarise(sepal_length = mean(Sepal.Length), n=n())
+}
 }
 
