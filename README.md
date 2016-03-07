@@ -106,18 +106,19 @@ Syntax completion of variables of a chunkwise file in RStudio works like a charm
 - `semi_join`
 - `anti_join`
 
-Since data is processed in chunks, some dplyr verbs are not implemented, because their results may differ from
-processing on the whole data set.
-Not implemented:
 
-- `summarize`
-- `group_by`
+Since data is processed in chunks, some dplyr verbs are not implemented:
+
 - `arrange`
 - `right_join`
 - `full_join`
 
-_Note that using `do` it is possible to do grouping and summarization with `chunked`_, but you have 
-to be explicit in how to aggregate the results from the chunks:
+`summarize` and `group_by` are implemented by generate a warning: they operate upon each chunk and
+__not__ on the whole data set. However this makes is more easy to process a large file, by repeatedly
+aggregating the resulting data.
+
+- `summarize`
+- `group_by`
 
 ```R
 tmp <- tempfile()
@@ -125,12 +126,11 @@ write.csv(iris, tmp, row.names=FALSE, quote=FALSE)
 iris_cw <- read_chunkwise(tmp, chunk_size = 30) # read in chunks of 30 rows for this example
 
 iris_cw %>% 
-  do( group_by(., Species) %>%           # group in each chunk
-        summarise( m = mean(Sepal.Width) # and summarize in each chunk
-                 , w = n()
-                 )
-    ) %>% 
-  as.data.frame %>%                      # since each Species has 50 records, results will be in multiple chunks
-  group_by(Species) %>%                  # group the results from the chunk
-  summarise(m = weighted.mean(m, w))     # and summarize it.
+  group_by(Species) %>%            # group in each chunk
+  summarise( m = mean(Sepal.Width) # and summarize in each chunk
+           , w = n()
+           ) %>% 
+  as.data.frame %>%                  # since each Species has 50 records, results will be in multiple chunks
+  group_by(Species) %>%              # group the results from the chunk
+  summarise(m = weighted.mean(m, w)) # and summarize it again
 ```
