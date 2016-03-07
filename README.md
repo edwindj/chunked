@@ -113,7 +113,7 @@ Since data is processed in chunks, some dplyr verbs are not implemented:
 - `right_join`
 - `full_join`
 
-`summarize` and `group_by` are implemented by generate a warning: they operate upon each chunk and
+`summarize` and `group_by` are implemented but generate a warning: they operate on each chunk and
 __not__ on the whole data set. However this makes is more easy to process a large file, by repeatedly
 aggregating the resulting data.
 
