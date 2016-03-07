@@ -56,6 +56,7 @@ chunkwise <- function(x, nrows=1e4L){
 record <- function(.data, cmd){
   .data$cmds <- c(.data$cmds, list(cmd))
   .data$.vars <- NULL
+  .data$.groups <- NULL
   .data
 }
 

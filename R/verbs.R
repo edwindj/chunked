@@ -34,6 +34,14 @@ transmute_.chunkwise <- function(.data, ..., .dots){
   record(.data, cmd)
 }
 
+summarise_.chunkwise <- function(.data, ..., .dots){
+  warning("summarize on a chunked text file, produces summarizations of chunks."
+          , call.=FALSE)
+  .dots <- lazyeval::all_dots(.dots, ...)
+  cmd <- lazyeval::lazy(summarise_(.data, .dots=.dots))
+  record(.data, cmd)
+}
+
 #' @export
 do_.chunkwise <- function(.data, ..., .dots){
   .dots <- lazyeval::all_dots(.dots, ...)
@@ -83,8 +91,22 @@ tbl_vars.chunkwise <- function(x){
 
 #' @export
 groups.chunkwise <- function(x){
-  NULL
+  if (is.null(x$.groups)){
+    x$.groups <- groups(collect(x, first_chunk_only=TRUE))
+  }
+  x$.groups
 }
+
+#' @export
+group_by_.chunkwise <- function(.data, ..., .dots, add=FALSE){
+  warning("'group_by' on a chunked text file, produces groups per chunk."
+       , call. = FALSE)
+  .dots <- lazyeval::all_dots(.dots, ...)
+  cmd <- lazyeval::lazy(group_by_(.data, .dots=.dots, add=add))
+  record(.data, cmd)
+}
+
+
 
 #' @export
 collect.chunkwise <- function(x, first_chunk_only=FALSE, ...){

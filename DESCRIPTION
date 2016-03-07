@@ -5,12 +5,20 @@ Version: 0.2.0.9000
 Date: 2015-10-12
 Author: Edwin de Jonge
 Maintainer: Edwin de Jonge <edwindjonge@gmail.com>
-Description: Text data can be processed chunkwise using 'dplyr' commands. These are recorded and executed per data chunk,
-  so large files can be processed with limited memory using the 'LaF' package.
+Description: Text data can be processed chunkwise using 'dplyr' commands. These
+    are recorded and executed per data chunk, so large files can be processed with
+    limited memory using the 'LaF' package.
 License: GPL-2
 LazyData: TRUE
-BugReports:	https://github.com/edwindj/chunked/issues
+BugReports: https://github.com/edwindj/chunked/issues
 URL: https://github.com/edwindj/chunked
-Depends: dplyr
-Imports: LaF, utils, lazyeval
-Suggests: testthat, RSQLite
+Depends:
+    dplyr
+Imports:
+    LaF,
+    utils,
+    lazyeval
+Suggests:
+    testthat,
+    RSQLite
+RoxygenNote: 5.0.1

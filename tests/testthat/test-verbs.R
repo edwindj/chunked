@@ -89,3 +89,16 @@ describe("anti_join",{
               , anti_join(women, women_half, by="height") %>% arrange(height)
   )
 })
+
+describe("summarise",{
+  expect_warning(
+    s <- summarise(tbl_women, h=mean(height), w = mean(weight), n=n()) %>% as.data.frame()
+  )
+  expect_equal(nrow(s), 3)
+  expect_equal(weighted.mean(s$h, s$n), mean(women$height))
+  expect_equal(weighted.mean(s$w, s$n), mean(women$weight))
+})
+
+describe("group_by",{
+  expect_warning(ir <- get_tbl_iris() %>% group_by(Species))
+})
