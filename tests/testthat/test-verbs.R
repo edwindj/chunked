@@ -100,5 +100,8 @@ describe("summarise",{
 })
 
 describe("group_by",{
-  expect_warning(ir <- get_tbl_iris() %>% group_by(Species))
+  ir <- get_tbl_iris() %>% group_by(Species)
+  expect_warning(m <- ir %>% summarise(m = mean(Sepal.Width), n=n()) %>% as.data.frame())
+  s <- m %>% group_by(Species) %>% summarise(m = weighted.mean(m, n))
+  #expect_equivalent(s, iris %>% group_by(Species) %>%  summarise(m=mean(Sepal.Width)))
 })
