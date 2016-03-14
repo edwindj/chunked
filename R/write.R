@@ -22,7 +22,7 @@ write_csv_chunkwise <- function(x, file="", sep=",", dec=".", col.names = TRUE, 
     stop("Parameter 'x' is not an object of type 'chunkwise'. Please use the function
          'read_csv_chunkwise'", call.=FALSE)
   }
-  df <- x$first_chunk(x$cmds)
+  df <- x$first_chunk(x$cmds, x$.warn)
   file_name <- NULL
   if (is.character(file) && file != ""){
     file_name <- file

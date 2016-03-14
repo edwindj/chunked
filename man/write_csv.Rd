@@ -67,7 +67,7 @@ write.csv(iris, iris_file, row.names = FALSE, quote= FALSE)
 iris_chunked <-
   read_chunkwise(iris_file, chunk_size = 49) \%>\% # 49 for demo purpose
   group_by(Species) \%>\%
-  summarise(sepal_length = mean(Sepal.Length), n=n())
+  summarise(sepal_length = mean(Sepal.Length), n=n()) # note that mean is per chunk
 }
 }
 

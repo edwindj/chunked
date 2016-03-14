@@ -3,14 +3,17 @@ chunkwise <- function(x, nrows=1e4L){
   columns <- 1:LaF::ncol(x)
   .completed <- FALSE
   .chunk <- NULL
+  reset <- function(){
   nrows <- nrows
 
-  reset <- function(){
     LaF::begin(x)
     .completed <<- FALSE
   }
 
-  first_chunk <- function(cmds=NULL){
+  first_chunk <- function(cmds=NULL, .warn=FALSE){
+    if (isTRUE(.warn)){
+      warning("'group_by' and 'summarize' on a chunkwise textfile work per chunk!", call. = FALSE)
+    }
     reset()
     next_chunk(cmds)
   }
