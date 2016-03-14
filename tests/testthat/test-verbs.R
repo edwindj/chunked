@@ -37,6 +37,12 @@ describe("rename()",{
   })
 })
 
+describe("groups()",{
+  ir <- get_tbl_iris() %>% group_by(Species)
+  expect_warning(g <- groups(ir))
+  expect_equal(g, list(quote(Species)))
+})
+
 
 describe("transmute()", {
 
