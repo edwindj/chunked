@@ -12,7 +12,7 @@ get_tbl_iris <- function(chunk_size = 30){
 }
 
 get_empty_db <- function(){
-  tmp <- file.path(tempdir(), "women.db")
+  tmp <- tempfile(fileext = ".db")
   src_sqlite(tmp, create=TRUE)
 }
 
