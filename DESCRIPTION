@@ -17,7 +17,7 @@ Depends:
 Imports:
     LaF,
     utils,
-    lazyeval
+    lazyeval, DBI
 Suggests:
     testthat,
     RSQLite
