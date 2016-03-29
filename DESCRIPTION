@@ -13,7 +13,7 @@ LazyData: TRUE
 BugReports: https://github.com/edwindj/chunked/issues
 URL: https://github.com/edwindj/chunked
 Depends:
-    dplyr
+    dplyr (>= 0.4.3)
 Imports:
     LaF,
     utils,
