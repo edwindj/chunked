@@ -1,7 +1,7 @@
 ---
 title: "Chunked"
 author: "Edwin de Jonge"
-date: "June 24, 2016"
+date: "dplyr for text files"
 output: 
   beamer_presentation:
     keep_tex: true
@@ -10,20 +10,71 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(chunked)
 ```
 
-## Chunked
+## What is `chunked`?
 
+Short answer:
+\begin{center}
+  \includegraphics[width=0.2\textwidth]{img/dplyr_logo} 
+  \Huge{for text files}
+\end{center}
 
-## Slide with R Output
+## Often before analysis
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+### (pre)process large text files to:
 
-## Slide with Plot
+\hfill\includegraphics[width=0.1\textwidth]{img/txtfile}
 
-```{r pressure}
-plot(pressure)
-```
+\vspace{-1cm}
+
+- select columns
+- filter rows
+- derive new variables
+
+### Save result into:
+
+- Another text file
+- A database
+
+## Option 1: Use unix tools
+
+### Good choice!
+
+- `sed`
+- `awk`
+- `grep` 
+- fast processing!
+
+### However...
+
+- It is nice to stay in `R`-universe (one data-processing tool)
+- Instead of the need to learn at least 3 extra tools 
+`sed`, `awk` and `grep` voodoo.
+- Does it work on my OS/shell?
+
+## Option 2: Read data with R
+
+### Use:
+
+- ~~~read.csv~~~ uh, `readr::read_csv`
+- `datatable::fread`
+- Fast reading of data into memory!
+
+### However...
+
+- You will need a lot of memory! 
+- Text files tend to be 1 to 100 Gb.
+- **Even though these procedures use memory mapping the resulting `data.frame` 
+does not!** 
+- development cycle of processing script is long... 
+
+## Process in chunks?
+\begin{center}
+  \includegraphics[height=0.8\textheight]{img/keep-calm-and-chop-chop-3}
+\end{center}
+
+## Option 3: Use chunked
+
 
