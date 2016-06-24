@@ -104,23 +104,28 @@ write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
     on.exit(close(file))
   }
 
-  h <- head(x, n=1) # retrieve first record for writing headers to file
+  h <- as.data.frame(head(x, n=1)) # retrieve first record for writing headers to file
   utils::write.table(h[0,], file=file, col.names = col.names, row.names=row.names,
               sep=sep, dec=dec, ...)
 
 
-  N <- x$query$nrow()
+  # store intermediate result
+  x <- compute(x)
+  N <- (count(x) %>% collect)$n
+
   progress <- dplyr::progress_estimated(ceiling(N/chunk_size), min_time = 3)
 
-  # callback function that will be called for each chunk
-  write_chunk <- function(x_chunk){
+  sql <- dplyr::sql_render(x)
+
+  res <- DBI::dbSendQuery(x$src$con, sql)
+  on.exit(DBI::dbClearResult(res))
+
+  while(!DBI::dbHasCompleted(res)){
+    x_chunk <- DBI::dbFetch(res, chunk_size)
     utils::write.table(x_chunk, file = file, col.names = FALSE, row.names=row.names,
-                sep=sep, dec=dec, ...)
+                       sep=sep, dec=dec, ...)
     progress$tick()
   }
-
-  # execute query
-  x$query$fetch_paged(chunk_size, write_chunk)
 
   if (is.null(file_name)){
     invisible(x)
