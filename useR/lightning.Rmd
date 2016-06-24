@@ -1,0 +1,29 @@
+---
+title: "Chunked"
+author: "Edwin de Jonge"
+date: "June 24, 2016"
+output: 
+  beamer_presentation:
+    keep_tex: true
+    theme: "Madrid"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Chunked
+
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+

@@ -104,7 +104,7 @@ write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
     on.exit(close(file))
   }
 
-  h <- head(x, n=1) # retrieve first record for writing headers to file
+  h <- as.data.frame(head(x, n=1)) # retrieve first record for writing headers to file
   utils::write.table(h[0,], file=file, col.names = col.names, row.names=row.names,
               sep=sep, dec=dec, ...)
 
