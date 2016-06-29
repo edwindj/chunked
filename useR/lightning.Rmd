@@ -1,7 +1,7 @@
 ---
 title: "Chunked"
 author: "Edwin de Jonge"
-date: "Statistisc Netherlands / UseR! 2016"
+date: "Statistics Netherlands / UseR! 2016"
 output: 
   beamer_presentation:
     keep_tex: false
@@ -40,7 +40,23 @@ Short answer:
 - Another text file
 - A database
 
-## Option 1: Use unix tools
+## Option 1: Read data with R
+
+### Use:
+
+- ~~~read.csv~~~ uh, `readr::read_csv`
+- `datatable::fread`
+- Fast reading of data into memory!
+
+### However...
+
+- You will need a lot of RAM! 
+- Text files tend to be 1 to 100 Gb.
+- **Even though these procedures use memory mapping the resulting `data.frame` 
+does not!** 
+- development cycle of processing script is long... 
+
+## Option 2: Use unix tools
 
 ### Good choice!
 
@@ -58,7 +74,7 @@ It is nice to stay in `R`-universe (one data-processing tool)
 - Does it work on my OS/shell?
 - I want to use dplyr verbs! (dplyr-deprivation...)
 
-## Option 2: Import data in DB
+## Option 3: Import data in DB
 
 ### Import data into DB
 
@@ -67,25 +83,9 @@ It is nice to stay in `R`-universe (one data-processing tool)
 
 ### However
 
-- That is LET (Load, Extract, Transform) in stead of (Extract, Load, Transform)
 - It is not really a R, but a DB solution
 - May be not efficient.
 
-## Option 3: Read data with R
-
-### Use:
-
-- ~~~read.csv~~~ uh, `readr::read_csv`
-- `datatable::fread`
-- Fast reading of data into memory!
-
-### However...
-
-- You will need a lot of RAM! 
-- Text files tend to be 1 to 100 Gb.
-- **Even though these procedures use memory mapping the resulting `data.frame` 
-does not!** 
-- development cycle of processing script is long... 
 
 ## Process in chunks?
 \begin{center}
@@ -168,7 +168,7 @@ tbl <-
   mutate(col6 = col1 + col2) %>% 
   write_chunkwise(db, 'my_large_table')
 ```
-## Scenario 2: DB -> TXT
+## Scenario 3: DB -> TXT
 
 ### Extract a large table from a DB to a text file
 
