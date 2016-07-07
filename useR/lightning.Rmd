@@ -107,37 +107,6 @@ It is nice to stay in `R`-universe (one data-processing tool)
 - All `dplyr` verbs on `chunk_wise` objects are recorded and replayed when
 writing.
 
-## Option 4: Use chunked!
-
-### Idea:
-
-- Process data chunk by chunk using `dplyr` verbs
-- Memory efficient, only one chunk at a time in memory
-- Lazy processing
-- Development cycle is short: test on first chunk.
-
-### 
-
-- Read (and write) on chunk at a time using  R package `LaF`.
-- All `dplyr` verbs on `chunk_wise` objects are recorded and replayed when
-writing.
-
-## Scenario 1: TXT -> TXT
-
-### Preprocess a text file with data
-
-```{r}
-read_chunkwise("my_data.csv", chunk_size = 5000) %>% 
- select(col1, col2) %>% 
- filter(col1 > 1) %>% 
- mutate(col3 = col1 + 1) %>% 
-write_chunkwise("output.csv")
-```
-This code:
-
-- evals chunk by chunk
-- allows for column name completion in Rstudio!
-
 ## Scenario 1: TXT -> TXT
 
 ### Preprocess a text file with data
