@@ -6,4 +6,4 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^appveyor\.yml$
-^useR$
+^useR2016$
