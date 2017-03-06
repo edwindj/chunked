@@ -61,7 +61,7 @@ write_table_chunkwise <- function(x, file="", sep="\t", dec=".", col.names=TRUE,
 
 #' Genereric function to write chunk by chunk
 #' @export
-#' @param x chunked input, e.g. created with \code{read_chunkwise}
+#' @param x chunked input, e.g. created with \code{read_chunkwise} or it can be a \code{tbl_sql} object.
 #' @param dest where should the data be written. May be a character or
 #' a \code{src_sql}.
 #' @param ... parameters that will be passed to the specific implementations.
@@ -96,7 +96,12 @@ write_chunkwise.chunkwise <- function( x, dest, table, file=dest
 write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
                                     col.names = TRUE, row.names = FALSE,
                                     chunk_size=1e4L,...){
-
+  if (missing(chunk_size)) {
+    cs <- attr(x, "chunk_size")
+    if (!is.null(cs)){
+      chunk_size <- cs
+    }
+  }
   file_name <- NULL
   if (is.character(file) && file != ""){
     file_name <- file

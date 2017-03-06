@@ -4,6 +4,7 @@
 \alias{read_chunkwise}
 \alias{read_chunkwise.character}
 \alias{read_chunkwise.laf}
+\alias{read_chunkwise.tbl_sql}
 \title{Read chunkwise from a data source}
 \usage{
 read_chunkwise(src, chunk_size = 10000L, ...)
@@ -12,6 +13,8 @@ read_chunkwise(src, chunk_size = 10000L, ...)
   format = c("csv", "csv2", "table"), ...)
 
 \method{read_chunkwise}{laf}(src, chunk_size = 10000L, ...)
+
+\method{read_chunkwise}{tbl_sql}(tbl, chunk_size = 10000L, ...)
 }
 \arguments{
 \item{src}{source to read from}
