@@ -14,7 +14,7 @@ read_chunkwise(src, chunk_size = 10000L, ...)
 
 \method{read_chunkwise}{laf}(src, chunk_size = 10000L, ...)
 
-\method{read_chunkwise}{tbl_sql}(tbl, chunk_size = 10000L, ...)
+\method{read_chunkwise}{tbl_sql}(src, chunk_size = 10000L, ...)
 }
 \arguments{
 \item{src}{source to read from}

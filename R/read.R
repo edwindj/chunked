@@ -78,7 +78,7 @@ read_chunkwise.laf <- function(src, chunk_size = 1e4L, ...){
 
 #' @rdname read_chunkwise
 #' @export
-read_chunkwise.tbl_sql <- function(tbl, chunk_size = 1e4L, ...){
-  attr(tbl, "chunk_size") <- chunk_size
-  tbl
+read_chunkwise.tbl_sql <- function(src, chunk_size = 1e4L, ...){
+  attr(src, "chunk_size") <- chunk_size
+  src
 }
