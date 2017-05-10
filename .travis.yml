@@ -6,6 +6,7 @@ warnings_are_errors: true
 env:
  global:
    - CRAN: http://cran.rstudio.com
+   - _R_CHECK_FORCE_SUGGESTS_: false
 
 r_github_packages:
   - hadley/testthat
