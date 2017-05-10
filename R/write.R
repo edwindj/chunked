@@ -120,7 +120,8 @@ write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
 
   progress <- dplyr::progress_estimated(ceiling(N/chunk_size), min_time = 3)
 
-  sql <- dplyr::sql_render(x)
+  # defined in compat (dplyr 0.5 -> 0.6)
+  sql <- sql_render(x)
 
   res <- DBI::dbSendQuery(x$src$con, sql)
   on.exit(DBI::dbClearResult(res))

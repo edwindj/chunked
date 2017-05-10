@@ -30,3 +30,4 @@ test_that("write_chunkwise to db works", {
   iris3 <- read.csv(tmp)
   expect_equal(iris3, iris)
 })
+

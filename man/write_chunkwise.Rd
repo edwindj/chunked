@@ -28,4 +28,3 @@ if \code{x} is a character.}
 \description{
 Genereric function to write chunk by chunk
 }
-

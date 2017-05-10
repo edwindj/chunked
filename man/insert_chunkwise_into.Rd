@@ -25,4 +25,3 @@ a \code{\link{tbl}} object pointing to the table in database \code{dest}.
 database. Typically \code{chunked} can be used to for preprocessing data
 before adding it to a database.
 }
-

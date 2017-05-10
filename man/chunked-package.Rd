@@ -3,10 +3,10 @@
 \docType{package}
 \name{chunked-package}
 \alias{chunked-package}
-\alias{dplyr-verbs}
+\alias{select}
 \alias{filter}
 \alias{mutate}
-\alias{select}
+\alias{dplyr-verbs}
 \title{Chunked}
 \description{
 R is a great tool, but processing large text files with data is cumbersome.

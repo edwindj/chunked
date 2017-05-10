@@ -20,5 +20,5 @@ Imports:
     lazyeval, DBI
 Suggests:
     testthat,
-    RSQLite
-RoxygenNote: 5.0.1
+    RSQLite, dbplyr
+RoxygenNote: 6.0.1

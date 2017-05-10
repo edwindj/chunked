@@ -31,4 +31,3 @@ an object of type tbl_chunk
 \description{
 Read chunkwise from a data source
 }
-
