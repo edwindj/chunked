@@ -1,7 +1,7 @@
 Package: chunked
 Type: Package
 Title: Chunkwise Text-File Processing for 'dplyr'
-Version: 0.3.1
+Version: 0.4
 Authors@R: c(person("Edwin", "de Jonge", email="edwindjonge@gmail.com", role=c("aut","cre")))
 Description: Text data can be processed chunkwise using 'dplyr' commands. These
     are recorded and executed per data chunk, so large files can be processed with
@@ -11,7 +11,7 @@ LazyData: TRUE
 BugReports: https://github.com/edwindj/chunked/issues
 URL: https://github.com/edwindj/chunked
 Depends:
-    dplyr (>= 0.5)
+    dplyr (>= 0.7)
 Imports:
     LaF,
     utils,
