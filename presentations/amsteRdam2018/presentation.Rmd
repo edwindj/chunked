@@ -24,7 +24,7 @@ library(chunked)
 ## What is `chunked`?
 
 Short answer:
-\begin{center}
+  \begin{center}
   \includegraphics[width=0.2\textwidth]{img/dplyr_logo} 
   \Huge{for data in text files}
 \end{center}
@@ -46,7 +46,7 @@ Short answer:
 - Another text file
 - A database
 
-## Option 1: Read data with R
+## Option 1: Read data with R {.plain}
 
 ### Use:
 
@@ -56,13 +56,14 @@ Short answer:
 
 ### However...
 
-- You will need a lot of RAM! 
+- You will need a lot of RAM![^2]
 - Text files tend to be 1 to 100 Gb.
 - **Even though these procedures use memory mapping the resulting `data.frame` 
 does not!** 
 - development cycle of processing script is looooooong... 
 
-[^1]:`chunked` has nspired `readr::read_csv_chunked`, also a nice option!
+[^1]:`chunked` has inspired `readr::read_csv_chunked`, also a nice option! 
+[^2]: Maybe `ALTVEC` in R3.5 changes the game... 
 
 ## Option 2: Use unix tools
 
@@ -174,8 +175,61 @@ tbl<-
 - **`summarize` and `group_by` work chunkwise (and not for all data!)**
 - No `arrange`, `right_join`, `full_join`
 
+## Implementation
+
+- When reading from a file or db an object of type `chunkwise` is created.
+
+### `chunkwise` contains: 
+
+- a connection to input
+- current position in input
+- a list of dplyr expressions
+- internal method: `record` and `play`
+
+### methods implemented
+
+- `head` to quickly scan the input file
+- `dplyr::tbl_vars`: powers the Rstudio `colname` completion.
+- `dplyr` verbs (as mentioned above)
+
+## 
+
+- `dplyr` commands are records and replayed.
+- lazy evaluation with `lazyeval` / `rlang`
+
+### e.g. `filter`
+
+```{r, eval=FALSE}
+filter.chunkwise <- function(.data, ..., .dots){
+  .dots <- lazyeval::all_dots(.dots, ...)
+  cmd <- lazyeval::lazy(filter_(.data, .dots=.dots))
+  record(.data, cmd)   # internal `chunked` function
+                       # that stores dplyr expressions
+}
+```
+
+## Ideas
+
+- Add sampling: `chunkwise.sample_n` or `chunkwise.sample_frac`
+- Create a chunk generic: chunkwise processing is useful for several formats:
+
+      - `ffbase`, 
+      - `feather`
+      - `arrow`
+      - `fst`
+      - `ldat`
+- Maybe unify the interface or
+cooperation?
+- ?
+
+
 ## Usage?
 
+I don't know the stats, but...
+
+\includegraphics[width=0.5\textwidth]{img/tweet_ben.png}
+\includegraphics[width=0.5\textwidth]{img/tweethuzzay.png}\\
+\includegraphics[width=0.5\textwidth]{img/tweet_2.png}
 
 ## Thank you!
 
