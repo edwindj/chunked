@@ -1,0 +1,97 @@
+%% EMOS rmarkdown/beamer header
+%% Mark van der Loo (2016)
+\usepackage{listings}
+\usepackage{mdframed}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows, positioning, decorations.pathreplacing}
+\usepackage{pgfplots}
+\usepackage{color}
+
+
+% CBS corporate light blue
+\definecolor{corplightblue}{HTML}{00a1cd}
+% CBS corporate dark blue
+\definecolor{corpdarkblue}{HTML}{0058b8}
+
+% set title colors
+\setbeamercolor{frametitle}{fg=corpdarkblue}
+\setbeamercolor{title}{fg=corpdarkblue}
+\setbeamercolor{block title}{fg=corpdarkblue}
+
+\setbeamerfont{normal text}{parent=structure}
+% nicer, rounder font for title
+\setbeamerfont{title}{series=\bfseries,parent=structure}
+% frame titles in boldface
+\setbeamerfont{frametitle}{series=\bfseries}
+% block title font
+\setbeamerfont{block title}{parent=structure}
+
+% enumeration
+\setbeamertemplate{itemize item}{\color{corpdarkblue}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{corpdarkblue}$-$}
+\setbeamercolor*{enumerate item}{fg=corpdarkblue}
+\setbeamercolor*{enumerate subitem}{fg=corpdarkblue}
+\setbeamercolor*{enumerate subsubitem}{fg=corpdarkblue}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{50}{60}}
+\makeatother
+
+
+% nicer, rounder font for title
+
+\setbeamertemplate{title page}{
+\begin{picture}(0,0)
+\put(0,50){\usebeamerfont{title}{\textcolor{corpdarkblue}{\inserttitle}\par}}
+\put(0,40){\usebeamerfont{subtitle}{\insertsubtitle\par}}
+
+
+\put(0,10){
+   \small Edwin de Jonge, Statistics Netherlands
+}
+\put(0,0){
+\texttt{\small @edwindjonge} | \texttt{\small github.com/edwindj}
+}
+
+
+\put(150,-100){
+%\includegraphics[height=3cm]{img/logo_eRum2018.png}
+}
+\end{picture}
+
+}
+
+\setbeamertemplate{frametitle}
+{
+  \begin{beamercolorbox}{frametitle}
+  \vskip2.7ex\insertframetitle
+  \end{beamercolorbox}
+}
+
+
+% remove the space-eating navigation symbols
+\beamertemplatenavigationsymbolsempty
+
+% convenience function to define rgb colors in tikz
+\tikzset{xcolor/.code args={#1=#2}{
+     \definecolor{mytemp}{rgb}{#2}
+     \tikzset{#1=mytemp}
+  }
+}
+
+
+\usebackgroundtemplate{
+   \begin{picture}(0,0)
+    \put(310, -273){%
+      \raisebox{2mm}{amst-R-dam}%\includegraphics[height=8mm]{img/logo_eRum2018-hex.png}
+    }
+\put(0,-279){
+\includegraphics[height=1cm]{img/CBS-Logo.png}
+}
+\end{picture}
+}
+
+
+\newcommand{\la}[1]{\boldsymbol{#1}}

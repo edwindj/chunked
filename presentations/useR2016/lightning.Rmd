@@ -1,10 +1,11 @@
 ---
 title: "Chunked"
+subtitle: "h"
 author: "Edwin de Jonge"
 date: "Statistics Netherlands / UseR! 2016"
 output: 
   beamer_presentation:
-    keep_tex: false
+    keep_tex: true
     theme: "Frankfurt"
     includes:
       in_header: header.tex

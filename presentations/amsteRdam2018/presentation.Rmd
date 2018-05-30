@@ -1,0 +1,191 @@
+---
+title: "Chunked"
+subtitle: "Chunked processing with dplyr"
+author: "Edwin de Jonge"
+date: "Statistics Netherlands / AmsteRdam 2018"
+output: 
+  beamer_presentation:
+    keep_tex: false
+    includes:
+      in_header: tex/header.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+library(chunked)
+```
+## Who am I?
+
+- Data scientist / Methodologist at Statistics Netherlands (aka CBS).
+- Author of several R-packages, including `whisker`, `validate`, `errorlocate`, `docopt`, `daff`, `tableplot`,  `ffbase`,...
+- Co-author of _Statistical Data Cleaning with applications in R (2018)_ (together with @markvdloo)
+- Co-worker of next speaker (Jan van der Laan)
+
+## What is `chunked`?
+
+Short answer:
+\begin{center}
+  \includegraphics[width=0.2\textwidth]{img/dplyr_logo} 
+  \Huge{for data in text files}
+\end{center}
+
+## Process Data in GB-sized Text Files:
+
+### (pre)Process text files to:
+
+\hfill\includegraphics[width=0.1\textwidth]{img/txtfile}
+
+\vspace{-1.6cm}
+
+- select columns
+- filter rows
+- derive new variables
+
+### Save result into:
+
+- Another text file
+- A database
+
+## Option 1: Read data with R
+
+### Use:
+
+- ~~~read.csv~~~ uh, `readr::read_csv`[^1]
+- `datatable::fread`
+- Fast reading of data into memory!
+
+### However...
+
+- You will need a lot of RAM! 
+- Text files tend to be 1 to 100 Gb.
+- **Even though these procedures use memory mapping the resulting `data.frame` 
+does not!** 
+- development cycle of processing script is looooooong... 
+
+[^1]:`chunked` has nspired `readr::read_csv_chunked`, also a nice option!
+
+## Option 2: Use unix tools
+
+### Good choice!
+
+- `sed`
+- `awk`
+- `grep` 
+- fast processing!
+
+### However...
+
+It is nice to stay in `R`-universe (one data-processing tool)
+
+- Instead of learning at least 3 extra tools 
+`sed`, `awk` and `grep` voodoo.
+- Does it work on my OS/shell?
+- I want to use dplyr verbs! (dplyr-deprivation...)
+
+## Option 3: Import data in DB
+
+### Import data into DB
+
+- Use DB tool to import data.
+- Process database with dplyr.
+
+### However
+
+- It is not really a R, but a DB solution
+- May be not efficient.
+
+
+## Process in chunks?
+\begin{center}
+  \includegraphics[height=0.8\textheight]{img/keep-calm-and-chop-chop-3}
+\end{center}
+
+## Option 4: Use chunked!
+
+### Idea:
+
+- Process data chunk by chunk using `dplyr` verbs
+- Memory efficient, only one chunk at a time in memory
+- Lazy processing
+- Development cycle is short: test on first chunk.
+
+### 
+
+- Read (and write) on chunk at a time using  R package `LaF`.
+- All `dplyr` verbs on `chunk_wise` objects are recorded and replayed when
+writing.
+
+## Scenario 1: TXT -> TXT
+
+### Preprocess a text file with data
+
+```{r}
+read_chunkwise("my_data.csv", chunk_size = 5000) %>% 
+ select(col1, col2) %>% 
+ filter(col1 > 1) %>% 
+ mutate(col3 = col1 + 1) %>% 
+write_chunkwise("output.csv")
+```
+This code:
+
+- evals chunk by chunk
+- allows for column name completion in Rstudio!
+
+## Scenario 2: TXT -> DB
+
+### Insert processed text data in DB
+
+```{r}
+db <- src_sqlite('test.db', create=TRUE)
+
+tbl <- 
+  read_chunkwise("./large_file_in.csv") %>% 
+  select(col1, col2, col5) %>%
+  filter(col1 > 10) %>% 
+  mutate(col6 = col1 + col2) %>% 
+  write_chunkwise(db, 'my_large_table')
+```
+## Scenario 3: DB -> TXT
+
+### Extract a large table from a DB to a text file
+
+```{r}
+tbl<- 
+  ( src_sqlite("test.db") %>% 
+    tbl("my_table")
+  ) %>% 
+  read_chunkwise(chunk_size=5000) %>% 
+  select(col1, col2, col5) %>%
+  filter(col1 > 10) %>% 
+  mutate(col6 = col1 + col2) %>% 
+  write_chunkwise('my_large_table.csv')
+```
+
+## Caveat
+
+### Working:
+
+- Working on chunks is memory efficient
+- `filter`, `select`, `rename`,`mutate`,`mutate_each`,`transmute`,`do`,
+` tbl_vars`, `inner_join`, `left_join`, `semi_join`,`anti_join` all work
+, also with name completion!
+  
+### However: 
+- **`summarize` and `group_by` work chunkwise (and not for all data!)**
+- No `arrange`, `right_join`, `full_join`
+
+## Usage?
+
+
+## Thank you!
+
+\Large{Interested?}
+
+```r
+install.packages("chunked")
+```
+
+\Large{Ideas and suggestions?}
+
+**[http://github.com/edwindj/chunked](http://github.com/edwindj/chunked)**
+
