@@ -109,6 +109,7 @@ group_by_.chunkwise <- function(.data, ..., .dots, add=FALSE){
 collect.chunkwise <- function(x, first_chunk_only=FALSE, ...){
   cmds <- x$cmds
   res <- x$first_chunk(cmds, x$.warn)
+  is_factor <- sapply(res, is.factor)
 
   if (isTRUE(first_chunk_only)){
     return(res)
@@ -118,5 +119,11 @@ collect.chunkwise <- function(x, first_chunk_only=FALSE, ...){
   while (!x$is_complete()){
     res[[length(res)+1]] <- x$next_chunk(cmds)
   }
-  bind_rows(res)
+
+  suppressWarnings({
+    # this is needed for factor columns, bind_rows automatically turns them into character columns.
+    res <- bind_rows(res)
+    res[is_factor] <- lapply(res[is_factor], factor)
+    res
+  })
 }

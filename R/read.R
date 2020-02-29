@@ -12,6 +12,7 @@
 #' @param header Does the csv file have a header with column names?
 #' @param sep field separator to be used
 #' @param dec decimal separator to be used
+#' @param stringsAsFactors \code{logical} should string be read as factors?
 #' @param ... not used
 #'
 #' \code{read_laf_chunkwise} reads chunkwise from a LaF object created with \code{laf_open}.
@@ -21,9 +22,13 @@
 #' @example ./examples/read.R
 #' @rdname read_chunks
 #' @export
-read_csv_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep=",", dec=".", ...){
+read_csv_chunkwise <- function( file, chunk_size=1e4L, header=TRUE, sep=",", dec="."
+                              , stringsAsFactors = default.stringsAsFactors()
+                              , ...
+                              ){
   #TODO add colClasses...
-  dm <- LaF::detect_dm_csv(file, header=header, sep=sep, dec=dec, ...)
+  factor_fraction <- if (isTRUE(stringsAsFactors)) 1 else 0
+  dm <- LaF::detect_dm_csv(file, header=header, sep=sep, dec=dec, factor_fraction = factor_fraction, ...)
   laf <- LaF::laf_open(dm)
   read_laf_chunkwise(laf, chunk_size = chunk_size)
 }
@@ -36,7 +41,7 @@ read_csv2_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep=";", dec
 
 #' @rdname read_chunks
 #' @export
-read_table_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep="\t", dec=".", ...){
+read_table_chunkwise <- function(file, chunk_size=1e4L, header=TRUE, sep=" ", dec=".", ...){
   read_csv_chunkwise(file=file, chunk_size=chunk_size, header=header, sep=sep, dec=dec, ...)
 }
 
@@ -61,12 +66,12 @@ read_chunkwise <- function(src, chunk_size = 1e4L, ...){
 #' @rdname read_chunkwise
 #' @param format used for specifying type of text file
 #' @export
-read_chunkwise.character <- function(src, chunk_size = 1e4L, format = c("csv", "csv2", "table"), ...){
+read_chunkwise.character <- function(src, chunk_size = 1e4L, format = c("csv", "csv2", "table"), stringsAsFactors = default.stringsAsFactors(), ...){
   format <- match.arg(format)
   switch (format,
-    table = read_table_chunkwise( file = src, ..., chunk_size = chunk_size),
-    csv2 = read_csv2_chunkwise( file = src, ..., chunk_size = chunk_size),
-    read_csv_chunkwise( file = src, ..., chunk_size = chunk_size)
+    table = read_table_chunkwise( file = src, stringsAsFactors = stringsAsFactors, ..., chunk_size = chunk_size),
+    csv2 = read_csv2_chunkwise( file = src, stringsAsFactors = stringsAsFactors, ..., chunk_size = chunk_size),
+    read_csv_chunkwise( file = src, stringsAsFactors = stringsAsFactors, ..., chunk_size = chunk_size)
   )
 }
 
