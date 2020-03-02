@@ -12,52 +12,52 @@
 #' @import dplyr
 #' @import rlang
 select.chunkwise <- function(.data, ...){
-  dots <- enexprs(..., .named = TRUE)
-  cmd <- expr(select(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(select(.data, !!!dots))
   record(.data, cmd)
 }
 
 
 #' @export
 rename.chunkwise <- function(.data, ...){
-  dots <- enexprs(..., .named = TRUE)
-  cmd <- expr(rename(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(rename(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 filter.chunkwise <- function(.data, ...){
-  dots <- enexprs(..., .named = FALSE)
-  cmd <- expr(filter(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(filter(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 mutate.chunkwise <- function(.data, ...){
-  dots <- enexprs(..., .named = TRUE)
-  cmd <- expr(mutate(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(mutate(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 transmute.chunkwise <- function(.data, ...){
-  dots <- enexprs(..., .named = TRUE)
-  cmd <- expr(transmute(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(transmute(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 summarise.chunkwise <- function(.data, ...){
   .data$.warn <- TRUE
-  dots <- enexprs(..., .named = TRUE)
-  cmd <- expr(summarise(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(summarise(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 do.chunkwise <- function(.data, ...){
-  dots <- enexprs(..., .named = TRUE)
-  cmd <- expr(do(.data, !!!dots))
+  dots <- enexprs(...)
+  cmd <- quo(do(.data, !!!dots))
   record(.data, cmd)
 }
 
@@ -113,9 +113,9 @@ groups.chunkwise <- function(x){
 #' @export
 group_by.chunkwise <- function(.data, ..., add=FALSE){
   .data$.warn <- TRUE
-  dots <- enexprs(..., .named = TRUE)
+  dots <- enexprs(...)
   dots$add <- add
-  cmd <- expr(group_by(.data, !!!dots))
+  cmd <- quo(group_by(.data, !!!dots))
   record(.data, cmd)
 }
 

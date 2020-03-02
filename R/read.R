@@ -64,6 +64,7 @@ read_chunkwise <- function(src, chunk_size = 1e4L, ...){
 }
 
 #' @rdname read_chunkwise
+#' @param stringsAsFactors \code{logical} should string be read as factors?
 #' @param format used for specifying type of text file
 #' @export
 read_chunkwise.character <- function(src, chunk_size = 1e4L, format = c("csv", "csv2", "table"), stringsAsFactors = default.stringsAsFactors(), ...){

@@ -29,6 +29,8 @@ read_chunkwise(src, chunk_size = 10000L, ...)
 \item{...}{parameters used by specific classes}
 
 \item{format}{used for specifying type of text file}
+
+\item{stringsAsFactors}{\code{logical} should string be read as factors?}
 }
 \value{
 an object of type tbl_chunk
