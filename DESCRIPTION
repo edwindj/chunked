@@ -21,3 +21,4 @@ Suggests:
     RSQLite, 
     dbplyr
 RoxygenNote: 7.0.2
+Encoding: UTF-8

@@ -64,8 +64,15 @@ record <- function(.data, cmd){
 }
 
 play <- function(.data, cmds=NULL){
+#  browser()
   for (cmd in cmds){
-    .data <- rlang::eval_tidy(cmd, list(.data=.data))
+    env <- parent.frame()
+    expr <- cmd
+    if (rlang::is_quosure(cmd)){
+      env <- rlang::get_env(cmd)
+      expr <- rlang::get_expr(cmd)
+    }
+    .data <- eval(expr, list(.data=.data), enclos = env)
   }
   .data
 }

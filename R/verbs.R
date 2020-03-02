@@ -12,52 +12,52 @@
 #' @import dplyr
 #' @import rlang
 select.chunkwise <- function(.data, ...){
-  dots <- enquos(...)
-  cmd <- quo(select(.data, !!!dots))
+  dots <- enexprs(..., .named = TRUE)
+  cmd <- expr(select(.data, !!!dots))
   record(.data, cmd)
 }
 
 
 #' @export
 rename.chunkwise <- function(.data, ...){
-  dots <- enquos(...)
-  cmd <- quo(rename(.data, !!!dots))
+  dots <- enexprs(..., .named = TRUE)
+  cmd <- expr(rename(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 filter.chunkwise <- function(.data, ...){
-  dots <- enquos(...)
-  cmd <- quo(filter(.data, !!!dots))
+  dots <- enexprs(..., .named = FALSE)
+  cmd <- expr(filter(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 mutate.chunkwise <- function(.data, ...){
-  dots <- enquos(...)
-  cmd <- quo(mutate(.data, !!!dots))
+  dots <- enexprs(..., .named = TRUE)
+  cmd <- expr(mutate(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 transmute.chunkwise <- function(.data, ...){
-  dots <- enquos(...)
-  cmd <- quo(transmute(.data, !!!dots))
+  dots <- enexprs(..., .named = TRUE)
+  cmd <- expr(transmute(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 summarise.chunkwise <- function(.data, ...){
   .data$.warn <- TRUE
-  dots <- enquos(...)
-  cmd <- quo(summarise(.data, !!!dots))
+  dots <- enexprs(..., .named = TRUE)
+  cmd <- expr(summarise(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
 do.chunkwise <- function(.data, ...){
-  dots <- enquos(...)
-  cmd <- quo(do(.data, !!!dots))
+  dots <- enexprs(..., .named = TRUE)
+  cmd <- expr(do(.data, !!!dots))
   record(.data, cmd)
 }
 
@@ -73,6 +73,7 @@ inner_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
 left_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
   # note that x is named .data in the lazy evaluation
   .data <- x
+  #browser()
   cmd <- quo(left_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
@@ -112,8 +113,9 @@ groups.chunkwise <- function(x){
 #' @export
 group_by.chunkwise <- function(.data, ..., add=FALSE){
   .data$.warn <- TRUE
-  dots <- enquos(...)
-  cmd <- quo(group_by(.data, !!!dots, add = add))
+  dots <- enexprs(..., .named = TRUE)
+  dots$add <- add
+  cmd <- expr(group_by(.data, !!!dots))
   record(.data, cmd)
 }
 

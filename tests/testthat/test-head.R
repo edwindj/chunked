@@ -11,3 +11,4 @@ test_that("head 10 works", {
   tbl_women <- get_tbl_women()
   expect_equal(head(tbl_women, 10), head(women, 10))
 })
+

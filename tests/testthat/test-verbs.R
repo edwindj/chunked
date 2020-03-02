@@ -6,6 +6,8 @@ tbl_women <- get_tbl_women()
 describe("mutate()", {
 
   it("can add a new column", {
+    tbl_women %>% mutate(a = 1)
+
     expect_equal( tbl_women %>% mutate(a = 1) %>% as.data.frame
                 , women %>% mutate(a = 1)                 )
   })
