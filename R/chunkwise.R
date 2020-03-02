@@ -65,7 +65,7 @@ record <- function(.data, cmd){
 
 play <- function(.data, cmds=NULL){
   for (cmd in cmds){
-    .data <- lazyeval::lazy_eval(cmd, list(.data=.data))
+    .data <- rlang::eval_tidy(cmd, list(.data=.data))
   }
   .data
 }

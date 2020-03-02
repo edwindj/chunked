@@ -7,14 +7,33 @@
 \alias{read_laf_chunkwise}
 \title{Read chunkwise data from text files}
 \usage{
-read_csv_chunkwise(file, chunk_size = 10000L, header = TRUE, sep = ",",
-  dec = ".", ...)
+read_csv_chunkwise(
+  file,
+  chunk_size = 10000L,
+  header = TRUE,
+  sep = ",",
+  dec = ".",
+  stringsAsFactors = default.stringsAsFactors(),
+  ...
+)
 
-read_csv2_chunkwise(file, chunk_size = 10000L, header = TRUE, sep = ";",
-  dec = ",", ...)
+read_csv2_chunkwise(
+  file,
+  chunk_size = 10000L,
+  header = TRUE,
+  sep = ";",
+  dec = ",",
+  ...
+)
 
-read_table_chunkwise(file, chunk_size = 10000L, header = TRUE,
-  sep = "\\t", dec = ".", ...)
+read_table_chunkwise(
+  file,
+  chunk_size = 10000L,
+  header = TRUE,
+  sep = " ",
+  dec = ".",
+  ...
+)
 
 read_laf_chunkwise(laf, chunk_size = 10000L)
 }
@@ -28,6 +47,8 @@ read_laf_chunkwise(laf, chunk_size = 10000L)
 \item{sep}{field separator to be used}
 
 \item{dec}{decimal separator to be used}
+
+\item{stringsAsFactors}{\code{logical} should string be read as factors?}
 
 \item{...}{not used
 

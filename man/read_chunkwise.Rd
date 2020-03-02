@@ -9,8 +9,13 @@
 \usage{
 read_chunkwise(src, chunk_size = 10000L, ...)
 
-\method{read_chunkwise}{character}(src, chunk_size = 10000L,
-  format = c("csv", "csv2", "table"), ...)
+\method{read_chunkwise}{character}(
+  src,
+  chunk_size = 10000L,
+  format = c("csv", "csv2", "table"),
+  stringsAsFactors = default.stringsAsFactors(),
+  ...
+)
 
 \method{read_chunkwise}{laf}(src, chunk_size = 10000L, ...)
 

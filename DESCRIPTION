@@ -15,9 +15,9 @@ Depends:
 Imports:
     LaF,
     utils,
-    lazyeval, DBI
+    rlang, DBI
 Suggests:
     testthat,
     RSQLite, 
     dbplyr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2

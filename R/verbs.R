@@ -1,51 +1,63 @@
 #' @export
 #' @import dplyr
-select_.chunkwise <- function(.data, ..., .dots){
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(select_(.data, .dots=.dots))
+#' @import rlang
+# select_.chunkwise <- function(.data, ..., .dots){
+#   .dots <- lazyeval::all_dots(.dots, ...)
+#   cmd <- lazyeval::lazy(select_(.data, .dots=.dots))
+#   record(.data, cmd)
+# }
+
+
+#' @export
+#' @import dplyr
+#' @import rlang
+select.chunkwise <- function(.data, ...){
+  dots <- enquos(...)
+  cmd <- quo(select(.data, !!!dots))
+  record(.data, cmd)
+}
+
+
+#' @export
+rename.chunkwise <- function(.data, ...){
+  dots <- enquos(...)
+  cmd <- quo(rename(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
-rename_.chunkwise <- function(.data, ..., .dots){
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(rename_(.data, .dots=.dots))
+filter.chunkwise <- function(.data, ...){
+  dots <- enquos(...)
+  cmd <- quo(filter(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
-filter_.chunkwise <- function(.data, ..., .dots){
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(filter_(.data, .dots=.dots))
+mutate.chunkwise <- function(.data, ...){
+  dots <- enquos(...)
+  cmd <- quo(mutate(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
-mutate_.chunkwise <- function(.data, ..., .dots){
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(mutate_(.data, .dots=.dots))
+transmute.chunkwise <- function(.data, ...){
+  dots <- enquos(...)
+  cmd <- quo(transmute(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
-transmute_.chunkwise <- function(.data, ..., .dots){
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(transmute_(.data, .dots=.dots))
-  record(.data, cmd)
-}
-
-#' @export
-summarise_.chunkwise <- function(.data, ..., .dots){
+summarise.chunkwise <- function(.data, ...){
   .data$.warn <- TRUE
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(summarise_(.data, .dots=.dots))
+  dots <- enquos(...)
+  cmd <- quo(summarise(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
-do_.chunkwise <- function(.data, ..., .dots){
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(do_(.data, .dots=.dots))
+do.chunkwise <- function(.data, ...){
+  dots <- enquos(...)
+  cmd <- quo(do(.data, !!!dots))
   record(.data, cmd)
 }
 
@@ -53,7 +65,7 @@ do_.chunkwise <- function(.data, ..., .dots){
 inner_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
   # note that x is named .data in the lazy evaluation
   .data <- x
-  cmd <- lazyeval::lazy(inner_join(.data, y, by, copy, ...))
+  cmd <- quo(inner_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
 
@@ -61,7 +73,7 @@ inner_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
 left_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
   # note that x is named .data in the lazy evaluation
   .data <- x
-  cmd <- lazyeval::lazy(left_join(.data, y, by, copy, ...))
+  cmd <- quo(left_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
 
@@ -69,7 +81,7 @@ left_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
 semi_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
   # note that x is named .data in the lazy evaluation
   .data <- x
-  cmd <- lazyeval::lazy(semi_join(.data, y, by, copy, ...))
+  cmd <- quo(semi_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
 
@@ -77,7 +89,7 @@ semi_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
 anti_join.chunkwise <- function(x, y, by=NULL, copy=FALSE, ...){
   # note that x is named .data in the lazy evaluation
   .data <- x
-  cmd <- lazyeval::lazy(anti_join(.data, y, by, copy, ...))
+  cmd <- quo(anti_join(.data, y, by, copy, ...))
   record(.data, cmd)
 }
 
@@ -98,10 +110,10 @@ groups.chunkwise <- function(x){
 }
 
 #' @export
-group_by_.chunkwise <- function(.data, ..., .dots, add=FALSE){
+group_by.chunkwise <- function(.data, ..., add=FALSE){
   .data$.warn <- TRUE
-  .dots <- lazyeval::all_dots(.dots, ...)
-  cmd <- lazyeval::lazy(group_by_(.data, .dots=.dots, add=add))
+  dots <- enquos(...)
+  cmd <- quo(group_by(.data, !!!dots, add = add))
   record(.data, cmd)
 }
 

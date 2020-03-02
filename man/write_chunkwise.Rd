@@ -7,8 +7,14 @@
 \usage{
 write_chunkwise(x, dest, ...)
 
-\method{write_chunkwise}{chunkwise}(x, dest, table, file = dest,
-  format = c("csv", "csv2", "table"), ...)
+\method{write_chunkwise}{chunkwise}(
+  x,
+  dest,
+  table,
+  file = dest,
+  format = c("csv", "csv2", "table"),
+  ...
+)
 }
 \arguments{
 \item{x}{chunked input, e.g. created with \code{read_chunkwise} or it can be a \code{tbl_sql} object.}

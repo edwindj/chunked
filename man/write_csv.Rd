@@ -6,14 +6,35 @@
 \alias{write_table_chunkwise}
 \title{Write chunks to a csv file}
 \usage{
-write_csv_chunkwise(x, file = "", sep = ",", dec = ".",
-  col.names = TRUE, row.names = FALSE, ...)
+write_csv_chunkwise(
+  x,
+  file = "",
+  sep = ",",
+  dec = ".",
+  col.names = TRUE,
+  row.names = FALSE,
+  ...
+)
 
-write_csv2_chunkwise(x, file = "", sep = ";", dec = ",",
-  col.names = TRUE, row.names = FALSE, ...)
+write_csv2_chunkwise(
+  x,
+  file = "",
+  sep = ";",
+  dec = ",",
+  col.names = TRUE,
+  row.names = FALSE,
+  ...
+)
 
-write_table_chunkwise(x, file = "", sep = "\\t", dec = ".",
-  col.names = TRUE, row.names = TRUE, ...)
+write_table_chunkwise(
+  x,
+  file = "",
+  sep = "\\t",
+  dec = ".",
+  col.names = TRUE,
+  row.names = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{chunkwise object pointing to a text file}
