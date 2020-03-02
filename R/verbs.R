@@ -120,6 +120,31 @@ group_by.chunkwise <- function(.data, ..., add=FALSE){
 }
 
 #' @export
+group_split.chunkwise <- function(.data, ...){
+  #.data$.warn <- TRUE
+  dots <- enexprs(...)
+  cmd <- quo(group_split(.data, !!!dots))
+  record(.data, cmd)
+}
+
+#' @export
+group_modify.chunkwise <- function(.data, ...){
+  #.data$.warn <- TRUE
+  dots <- enexprs(...)
+  cmd <- quo(group_modify(.data, !!!dots))
+  record(.data, cmd)
+}
+
+#' @export
+group_keys.chunkwise <- function(.data, ...){
+  #.data$.warn <- TRUE
+  dots <- enexprs(...)
+  cmd <- quo(group_keys(.data, !!!dots))
+  record(.data, cmd)
+}
+
+
+#' @export
 collect.chunkwise <- function(x, first_chunk_only=FALSE, ...){
   cmds <- x$cmds
   res <- x$first_chunk(cmds, x$.warn)

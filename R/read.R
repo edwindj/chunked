@@ -26,9 +26,14 @@ read_csv_chunkwise <- function( file, chunk_size=1e4L, header=TRUE, sep=",", dec
                               , stringsAsFactors = default.stringsAsFactors()
                               , ...
                               ){
+  #browser()
   #TODO add colClasses...
   factor_fraction <- if (isTRUE(stringsAsFactors)) 1 else 0
-  dm <- LaF::detect_dm_csv(file, header=header, sep=sep, dec=dec, factor_fraction = factor_fraction, ...)
+  dm <- LaF::detect_dm_csv(file
+                          , header=header, sep=sep, dec=dec, factor_fraction = factor_fraction
+                          , stringsAsFactors = stringsAsFactors
+                          , ...
+                          )
   laf <- LaF::laf_open(dm)
   read_laf_chunkwise(laf, chunk_size = chunk_size)
 }
@@ -67,7 +72,12 @@ read_chunkwise <- function(src, chunk_size = 1e4L, ...){
 #' @param stringsAsFactors \code{logical} should string be read as factors?
 #' @param format used for specifying type of text file
 #' @export
-read_chunkwise.character <- function(src, chunk_size = 1e4L, format = c("csv", "csv2", "table"), stringsAsFactors = default.stringsAsFactors(), ...){
+read_chunkwise.character <- function(src
+                                    , chunk_size = 1e4L
+                                    , format = c("csv", "csv2", "table")
+                                    , stringsAsFactors = default.stringsAsFactors()
+                                    , ...
+                                    ){
   format <- match.arg(format)
   switch (format,
     table = read_table_chunkwise( file = src, stringsAsFactors = stringsAsFactors, ..., chunk_size = chunk_size),
