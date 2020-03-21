@@ -1,3 +1,7 @@
+Version 0.5.0
+
+* Fix for release of dplyr 1.0.0
+
 Version 0.4.1
 
 * Fix for change of default in stringsAsFactors for R 4.0

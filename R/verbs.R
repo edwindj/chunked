@@ -111,6 +111,15 @@ groups.chunkwise <- function(x){
 }
 
 #' @export
+group_vars.chunkwise <- function(x){
+  if (is.null(x$.group_vars)){
+    x$.group_vars <- group_vars(collect(x, first_chunk_only=TRUE))
+  }
+  x$.group_vars
+}
+
+
+#' @export
 group_by.chunkwise <- function(.data, ..., add=FALSE){
   .data$.warn <- TRUE
   dots <- enexprs(...)
@@ -130,9 +139,8 @@ group_split.chunkwise <- function(.tbl, ..., keep = TRUE){
 }
 
 #' @export
-group_modify.chunkwise <- function(.tbl, .f, ..., keep = FALSE){
+group_modify.chunkwise <- function(.data, .f, ..., keep = FALSE){
   #.data$.warn <- TRUE
-  .data <- .tbl
   dots <- enexprs(...)
   dots$.f <- .f
   dots$keep <- keep

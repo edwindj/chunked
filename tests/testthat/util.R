@@ -12,8 +12,8 @@ get_tbl_iris <- function(chunk_size = 30){
 }
 
 get_empty_db <- function(){
-  tmp <- tempfile(fileext = ".db")
-  src_sqlite(tmp, create=TRUE)
+  db <- DBI::dbConnect(RSQLite::SQLite(), "")
+  dbplyr::src_dbi(db)
 }
 
 get_women_db <- function(){

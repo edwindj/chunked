@@ -1,5 +1,5 @@
 #' @export
-arrange_.chunkwise <- function(.data, ..., .dots){
+arrange.chunkwise <- function(.data, ..., .dots){
   stop("'arrange' is not supported on a chunked text file, because data is processed chunk by chunk."
        , call. = FALSE)
 }

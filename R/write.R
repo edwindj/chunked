@@ -116,10 +116,9 @@ write_chunkwise.tbl_sql <- function(x, dest="", file=dest, sep=",", dec=".",
 
   # store intermediate result
   x <- compute(x)
-  N <- (count(x) %>% collect)$n
+  N <- (collect(tally(x)))$n
 
-  progress <- dplyr::progress_estimated(ceiling(N/chunk_size), min_time = 3)
-
+  progress <- progress::progress_bar$new(total = ceiling(N/chunk_size), show_after = 3)
   # defined in compat (dplyr 0.5 -> 0.6)
   sql <- sql_render(x)
 
