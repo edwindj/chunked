@@ -138,15 +138,35 @@ group_split.chunkwise <- function(.tbl, ..., keep = TRUE){
   record(.data, cmd)
 }
 
-#' @export
-group_modify.chunkwise <- function(.data, .f, ..., keep = FALSE){
-  #.data$.warn <- TRUE
-  dots <- enexprs(...)
-  dots$.f <- .f
-  dots$keep <- keep
-  cmd <- quo(group_modify(.data, !!!dots))
-  record(.data, cmd)
-}
+#' @exportS3Method group_modify chunkwise
+delayedAssign("group_modify.chunkwise", {
+  if (".data" %in% names(formals(dplyr::group_modify))) {
+    function(.data, .f, ..., keep) {
+      dots <- enexprs(...)
+      dots$.f <- .f
+      dots$keep <- keep
+      cmd <- quo(group_modify(.data, !!!dots))
+      record(.data, cmd)
+    }
+  } else {
+    function(.tbl, .f, ..., keep) {
+      dots <- enexprs(...)
+      dots$.f <- .f
+      dots$keep <- keep
+      cmd <- quo(group_modify(.tbl, !!!dots))
+      record(.tbl, cmd)
+    }
+  }
+})
+
+# group_modify.chunkwise <- function(.data, .f, ..., keep = FALSE){
+#   #.data$.warn <- TRUE
+#   dots <- enexprs(...)
+#   dots$.f <- .f
+#   dots$keep <- keep
+#   cmd <- quo(group_modify(.data, !!!dots))
+#   record(.data, cmd)
+# }
 
 #' @export
 group_keys.chunkwise <- function(.tbl, ...){
