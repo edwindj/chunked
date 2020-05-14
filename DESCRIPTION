@@ -1,7 +1,7 @@
 Package: chunked
 Type: Package
 Title: Chunkwise Text-File Processing for 'dplyr'
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: c(person("Edwin", "de Jonge", email="edwindjonge@gmail.com", role=c("aut","cre")))
 Description: Data stored in text file can be processed chunkwise using 'dplyr' commands. These
     are recorded and executed per data chunk, so large files can be processed with
@@ -22,5 +22,5 @@ Suggests:
     testthat,
     RSQLite, 
     dbplyr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Encoding: UTF-8

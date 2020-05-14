@@ -1,3 +1,8 @@
+Version 0.5.1
+
+* Changed the default settings stringsAsFactors to `FALSE`, compliant with 
+R version 4.0
+
 Version 0.5.0
 
 * Fix for release of dplyr 1.0.0

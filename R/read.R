@@ -23,7 +23,7 @@
 #' @rdname read_chunks
 #' @export
 read_csv_chunkwise <- function( file, chunk_size=1e4L, header=TRUE, sep=",", dec="."
-                              , stringsAsFactors = default.stringsAsFactors()
+                              , stringsAsFactors = FALSE
                               , ...
                               ){
   #browser()
@@ -75,7 +75,7 @@ read_chunkwise <- function(src, chunk_size = 1e4L, ...){
 read_chunkwise.character <- function(src
                                     , chunk_size = 1e4L
                                     , format = c("csv", "csv2", "table")
-                                    , stringsAsFactors = default.stringsAsFactors()
+                                    , stringsAsFactors = FALSE
                                     , ...
                                     ){
   format <- match.arg(format)

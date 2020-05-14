@@ -13,7 +13,7 @@ read_chunkwise(src, chunk_size = 10000L, ...)
   src,
   chunk_size = 10000L,
   format = c("csv", "csv2", "table"),
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   ...
 )
 

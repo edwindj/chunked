@@ -13,7 +13,7 @@ read_csv_chunkwise(
   header = TRUE,
   sep = ",",
   dec = ".",
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   ...
 )
 
