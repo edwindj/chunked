@@ -13,32 +13,29 @@
 insert_chunkwise_into <- function(x, dest, table, temporary = FALSE, analyze = FALSE){
   cmds <- x$cmds
   df <- x$first_chunk(cmds)
-
   class(df) <- "data.frame"
   con <- dest$con
 
-  dplyr::db_begin(con)
-  on.exit(dplyr::db_rollback(con))
-  if (isTRUE(dplyr::db_has_table(dest$con, table))) {
-    warning("Table ", table, " already exists.", call. = FALSE)
-  } else {
-    types <-dplyr::db_data_type(con, df)
-    names(types) <- names(df)
-    dplyr::db_create_table(con, table, types, temporary = temporary)
-  }
-
-  dplyr::db_insert_into(con, table, df)
-
-  while(!x$is_complete()){
-    df <- x$next_chunk(cmds)
-    if (is.data.frame(df)){
-      dplyr::db_insert_into(con, table, df)
+  DBI::dbWithTransaction(con, {
+    if (isTRUE(DBI::dbExistsTable(dest$con, table))) {
+      warning("Table ", table, " already exists.", call. = FALSE)
+      DBI::dbWriteTable(con, table, df, append = TRUE)
+    } else {
+      DBI::dbWriteTable(con, table, df)
     }
+
+    while(!x$is_complete()){
+      df <- x$next_chunk(cmds)
+      if (is.data.frame(df)){
+        DBI::dbWriteTable(con, table, df, append = TRUE)
+      }
+    }
+  })
+
+  if (analyze) {
+    warning("analyze = TRUE is deprecated", call. = FALSE)
   }
-  if (analyze)
-    dplyr::db_analyze(con, table)
-  dplyr::db_commit(con)
-  on.exit(NULL)
+
   dplyr::tbl(dest, table)
 }
 
