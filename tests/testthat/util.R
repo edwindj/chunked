@@ -19,4 +19,5 @@ get_empty_db <- function(){
 get_women_db <- function(){
   db <- get_empty_db()
   dplyr::copy_to(db, women)
+  db
 }

@@ -29,5 +29,6 @@ test_that("write_chunkwise to db works", {
   write_chunkwise(iris2, tmp, row.names = FALSE)
   iris3 <- read.csv(tmp, stringsAsFactors = TRUE)
   expect_equal(iris3, iris)
+  DBI::dbDisconnect(db$con)
 })
 

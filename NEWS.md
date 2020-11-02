@@ -1,6 +1,7 @@
 Version 0.5.1
 
 * Use DBI functions for db access instead of the dbplyr versions. Thanks to @hadley
+
 * Changed the default settings stringsAsFactors to `FALSE`, compliant with 
 R version 4.0
 

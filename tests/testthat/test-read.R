@@ -5,6 +5,7 @@ source("util.R")
 describe("Reading from db",{
   it("should read chunked from db",{
     women_db <- get_women_db()
+    DBI::dbDisconnect(women_db$con)
   })
 })
 
