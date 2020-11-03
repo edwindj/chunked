@@ -1,7 +1,7 @@
 # chunked
 
-[![version](http://www.r-pkg.org/badges/version/chunked)](http://www.r-pkg.org/pkg/chunked)
-[![Downloads](http://cranlogs.r-pkg.org/badges/chunked)](http://www.r-pkg.org/pkg/chunked) 
+[![version](https://cran.r-project.org/package=chunked)](https://cran.r-project.org/package=chunked)
+[![Downloads](https://cranlogs.r-pkg.org/badges/chunked)](https://cran.r-project.org/package=chunked) 
 [![Travis-CI Build Status](https://travis-ci.org/edwindj/chunked.svg?branch=master)](https://travis-ci.org/edwindj/chunked)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/edwindj/chunked?branch=master)](https://ci.appveyor.com/project/edwindj/chunked)
 [![Coverage Status](https://coveralls.io/repos/edwindj/chunked/badge.svg?branch=master&service=github)](https://coveralls.io/github/edwindj/chunked?branch=master)
@@ -24,7 +24,7 @@ install.packages('chunked')
 
 beta version with: 
 ```r
-install.packages('chunked', repos=c('https://cran.rstudio.com', 'http://edwindj.github.io/drat'))
+install.packages('chunked', repos=c('https://cran.rstudio.com', 'https://edwindj.github.io/drat'))
 ```
 
 and the development version with:
