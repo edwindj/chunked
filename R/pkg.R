@@ -2,7 +2,7 @@
 #'
 #' R is a great tool, but processing large text files with data is cumbersome.
 #' \code{chunked} helps you to process large text files with dplyr while loading
-#' only a part of the data in memory. It builds on the execellent R package LaF
+#' only a part of the data in memory. It builds on the excellent R package LaF
 #' Processing commands are writing in dplyr syntax, and \code{chunked}
 #'  (using \code{LaF})
 #'  will take care that chunk by chunk is processed, taking far less memory
