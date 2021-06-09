@@ -56,14 +56,15 @@ write the result back to a text file
 
 Another option is to use `chunked` as a preprocessing step before adding it to a database
 ```r
-db <- src_sqlite('test.db', create=TRUE)
+con <- DBI::dbConnect(RSQLite::SQLite(), 'test.db', create=TRUE)
+db <- dbplyr::src_dbi(con)
 
 tbl <- 
   read_chunkwise("./large_file_in.csv", chunk_size=5000) %>% 
   select(col1, col2, col5) %>%
   filter(col1 > 10) %>% 
   mutate(col6 = col1 + col2) %>% 
-  write_chunkwise(db, 'my_large_table')
+  write_chunkwise(dbplyr::src_dbi(db), 'my_large_table')
   
 # tbl now points to the table in sqlite.
 ```
