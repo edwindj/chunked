@@ -7,7 +7,6 @@ Description: Data stored in text file can be processed chunkwise using 'dplyr' c
     are recorded and executed per data chunk, so large files can be processed with
     limited memory using the 'LaF' package.
 License: GPL-2
-LazyData: TRUE
 BugReports: https://github.com/edwindj/chunked/issues
 URL: https://github.com/edwindj/chunked
 Depends:
@@ -17,10 +16,11 @@ Imports:
     utils,
     rlang, 
     DBI, 
-    progress
+    progress, 
+    tibble
 Suggests:
     testthat,
     RSQLite, 
     dbplyr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
