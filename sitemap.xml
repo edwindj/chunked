@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>/404.html</loc>
+  </url>
+  <url>
+    <loc>/authors.html</loc>
+  </url>
+  <url>
+    <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/chunked-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/insert_chunkwise_into.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_chunks.html</loc>
+  </url>
+  <url>
+    <loc>/reference/read_chunkwise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/write_chunkwise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/write_csv.html</loc>
+  </url>
+</urlset>
