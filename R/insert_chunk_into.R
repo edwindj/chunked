@@ -5,7 +5,7 @@
 #' before adding it to a database.
 #' @export
 #' @param x tbl_chunk object
-#' @param dest database destination, e.g. src_sqlite()
+#' @param dest database destination, e.g. src_dbi()
 #' @param table name of table
 #' @param temporary Should the table be removed when the database connection is closed?
 #' @param analyze Should the table be analyzed after import?

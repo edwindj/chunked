@@ -8,7 +8,9 @@ print.chunkwise <- function(x, n=NULL, width=NULL, ...){
     cat("Groups: ", commas(sapply(grps, deparse, width.cutoff = 500L)), "\n", sep = "")
   }
   cat("\n")
-  print(trunc_mat(h, n = n, width = width))
+  # browser()
+  print(h, width=width, ..., n = n)
+  #print(trunc_mat(h, n = n, width = width))
   cat("...\n")
   invisible(x)
 }
