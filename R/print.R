@@ -1,3 +1,4 @@
+#' @importFrom tibble trunc_mat
 #' @export
 print.chunkwise <- function(x, n=NULL, width=NULL, ...){
   h <- if (is.null(n)) head.chunkwise(x) else head.chunkwise(x,n)
