@@ -9,7 +9,7 @@ insert_chunkwise_into(x, dest, table, temporary = FALSE, analyze = FALSE)
 \arguments{
 \item{x}{tbl_chunk object}
 
-\item{dest}{database destination, e.g. src_sqlite()}
+\item{dest}{database destination, e.g. src_dbi()}
 
 \item{table}{name of table}
 
@@ -18,7 +18,7 @@ insert_chunkwise_into(x, dest, table, temporary = FALSE, analyze = FALSE)
 \item{analyze}{Should the table be analyzed after import?}
 }
 \value{
-a \code{\link{tbl}} object pointing to the table in database \code{dest}.
+a \code{\link[dplyr]{tbl}} object pointing to the table in database \code{dest}.
 }
 \description{
 \code{insert_chunkwise_into} can be used to insert chunks of data into a

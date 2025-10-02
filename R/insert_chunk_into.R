@@ -9,7 +9,7 @@
 #' @param table name of table
 #' @param temporary Should the table be removed when the database connection is closed?
 #' @param analyze Should the table be analyzed after import?
-#' @return a \code{\link{tbl}} object pointing to the table in database \code{dest}.
+#' @return a \code{\link[dplyr]{tbl}} object pointing to the table in database \code{dest}.
 insert_chunkwise_into <- function(x, dest, table, temporary = FALSE, analyze = FALSE){
   cmds <- x$cmds
   df <- x$first_chunk(cmds)

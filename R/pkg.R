@@ -45,4 +45,4 @@
 #' @docType package
 #' @name chunked-package
 #' @aliases select filter mutate dplyr-verbs
-NULL
+"_PACKAGE"

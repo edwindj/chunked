@@ -2,6 +2,7 @@
 % Please edit documentation in R/pkg.R
 \docType{package}
 \name{chunked-package}
+\alias{chunked}
 \alias{chunked-package}
 \alias{select}
 \alias{filter}
@@ -53,3 +54,15 @@ filter, select, do, left_join, inner_join
  }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/edwindj/chunked}
+  \item Report bugs at \url{https://github.com/edwindj/chunked/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Edwin de Jonge \email{edwindjonge@gmail.com} (\href{https://orcid.org/0000-0002-6580-4718}{ORCID})
+
+}
