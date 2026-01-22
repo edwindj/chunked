@@ -59,7 +59,7 @@ write_table_chunkwise <- function(x, file="", sep="\t", dec=".", col.names=TRUE,
   write_csv_chunkwise(x=x, file=file, sep=sep, dec=dec, col.names=col.names, row.names=row.names, ...)
 }
 
-#' Genereric function to write chunk by chunk
+#' Generic function to write chunk by chunk
 #' @export
 #' @param x chunked input, e.g. created with \code{read_chunkwise} or it can be a \code{tbl_sql} object.
 #' @param dest where should the data be written. May be a character or
