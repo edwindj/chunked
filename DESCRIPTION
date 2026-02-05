@@ -9,7 +9,7 @@ Description: Data stored in text file can be processed chunkwise using 'dplyr' c
 License: GPL-2
 LazyData: TRUE
 BugReports: https://github.com/edwindj/chunked/issues
-URL: https://github.com/edwindj/chunked
+URL: https://github.com/edwindj/chunked, http://edwindj.github.io/chunked/
 Depends:
     dplyr (>= 0.7)
 Imports:
