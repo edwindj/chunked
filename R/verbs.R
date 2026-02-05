@@ -120,20 +120,20 @@ group_vars.chunkwise <- function(x){
 
 
 #' @export
-group_by.chunkwise <- function(.data, ..., add=FALSE){
+group_by.chunkwise <- function(.data, ..., .add=FALSE){
   .data$.warn <- TRUE
   dots <- enexprs(...)
-  dots$add <- add
+  dots$.add <- .add
   cmd <- quo(group_by(.data, !!!dots))
   record(.data, cmd)
 }
 
 #' @export
-group_split.chunkwise <- function(.tbl, ..., keep = TRUE){
+group_split.chunkwise <- function(.tbl, ..., .keep = TRUE){
   #.data$.warn <- TRUE
   .data <- .tbl
   dots <- enexprs(...)
-  dots$keep <- keep
+  dots$.keep <- .keep
   cmd <- quo(group_split(.data, !!!dots))
   record(.data, cmd)
 }

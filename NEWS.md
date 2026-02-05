@@ -1,3 +1,7 @@
+# Version 0.6.2
+* changed argument `add` into `.add` in `group_by`
+* changed argument `keep` into `.keep` in `group_split`
+
 # Version 0.6 
 * removed dependency on trunc_mat  (change in dplyr)
 
