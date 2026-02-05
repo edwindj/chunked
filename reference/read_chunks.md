@@ -2,8 +2,9 @@
 
 read_csv_chunk will open a connection to a text file. Subsequent dplyr
 verbs and commands are recorded until `collect`,
-[`write_csv_chunkwise`](write_csv.md) is called. In that case the
-recorded commands will be executed chunk by chunk. This
+[`write_csv_chunkwise`](http://edwindj.github.io/chunked/reference/write_csv.md)
+is called. In that case the recorded commands will be executed chunk by
+chunk. This
 
 ## Usage
 
@@ -79,8 +80,10 @@ read_laf_chunkwise(laf, chunk_size = 10000L)
 ## Details
 
 read_csv_chunkwise can be best combined with
-[`write_csv_chunkwise`](write_csv.md) or
-[`insert_chunkwise_into`](insert_chunkwise_into.md) (see example)
+[`write_csv_chunkwise`](http://edwindj.github.io/chunked/reference/write_csv.md)
+or
+[`insert_chunkwise_into`](http://edwindj.github.io/chunked/reference/insert_chunkwise_into.md)
+(see example)
 
 ## Examples
 

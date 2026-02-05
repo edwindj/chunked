@@ -1,14 +1,14 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/news/index.html</loc></url>
-<url><loc>/reference/chunked-package.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/insert_chunkwise_into.html</loc></url>
-<url><loc>/reference/read_chunks.html</loc></url>
-<url><loc>/reference/read_chunkwise.html</loc></url>
-<url><loc>/reference/write_chunkwise.html</loc></url>
-<url><loc>/reference/write_csv.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/404.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/authors.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/index.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/news/index.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/chunked-package.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/index.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/insert_chunkwise_into.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/read_chunks.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/read_chunkwise.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/write_chunkwise.html</loc></url>
+<url><loc>http://edwindj.github.io/chunked/reference/write_csv.html</loc></url>
 </urlset>
 

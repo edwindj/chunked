@@ -1,10 +1,11 @@
 # Write chunks to a csv file
 
 Writes data to a csv file chunk by chunk. This function must be just in
-conjunction with [`read_csv_chunkwise`](read_chunks.md). Chunks of data
-will be read, processed and written when this function is called. For
-writing to a database use
-[`insert_chunkwise_into`](insert_chunkwise_into.md).
+conjunction with
+[`read_csv_chunkwise`](http://edwindj.github.io/chunked/reference/read_chunks.md).
+Chunks of data will be read, processed and written when this function is
+called. For writing to a database use
+[`insert_chunkwise_into`](http://edwindj.github.io/chunked/reference/insert_chunkwise_into.md).
 
 ## Usage
 
